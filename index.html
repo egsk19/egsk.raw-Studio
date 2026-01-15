@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>egsk.raw — Automotive Photographer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="description" content="egsk.raw — Automotive photographer focused on cinematic, detail-driven visuals." />
 <meta name="theme-color" content="#0b0b0e" />
 
@@ -28,6 +28,10 @@
   --border2:rgba(255,255,255,.12);
   --shadow: 0 18px 60px rgba(0,0,0,.45);
   --glow: 0 0 24px rgba(255,255,255,.18);
+
+  /* iOS safe areas */
+  --safeTop: env(safe-area-inset-top, 0px);
+  --safeBottom: env(safe-area-inset-bottom, 0px);
 }
 
 *{box-sizing:border-box}
@@ -39,6 +43,10 @@ body{
   font-family:Inter,system-ui,sans-serif;
   overflow-x:hidden;
 }
+
+/* Tap/hover polish on mobile */
+a, button{ -webkit-tap-highlight-color: transparent; }
+button{ font-family:inherit; }
 
 /* ---------- SUBTLE GRAIN OVERLAY ---------- */
 body::before{
@@ -76,10 +84,11 @@ nav{
 }
 .nav-inner{
   width:100%;
-  padding:16px 32px;
+  padding:calc(12px + var(--safeTop)) 16px 12px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:10px;
 }
 .brand{
   display:flex;
@@ -87,41 +96,49 @@ nav{
   gap:10px;
   font-weight:600;
   letter-spacing:.2px;
+  white-space:nowrap;
 }
 .brand-dot{
   width:8px;height:8px;border-radius:999px;
   background:rgba(255,255,255,.75);
   box-shadow:var(--glow);
 }
+.nav-links{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:2px;
+  scrollbar-width:none;
+}
+.nav-links::-webkit-scrollbar{ display:none; }
+
 nav a{
   color:var(--text);
   text-decoration:none;
-  font-size:14px;
-  margin-left:26px;
+  font-size:13px;
   opacity:.85;
   position:relative;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid transparent;
+  white-space:nowrap;
 }
 nav a:hover{opacity:1}
-nav a::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:1px;
-  background:#fff;
-  transition:.25s ease;
+nav a:focus{ outline:none; border-color:rgba(255,255,255,.16); }
+nav a.active{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.12);
 }
-nav a:hover::after{width:100%}
 
-/* ---------- HERO (WITH BACKGROUND IMAGE) ---------- */
+/* ---------- HERO ---------- */
 header{
-  min-height:100vh;
+  min-height:100svh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:140px 24px 120px;
+  padding:calc(110px + var(--safeTop)) 16px calc(80px + var(--safeBottom));
   position:relative;
   z-index:5;
   overflow:hidden;
@@ -166,21 +183,21 @@ header::after{
 .kicker span{ color:rgba(255,255,255,.58); }
 header h1{
   font-family:Playfair Display,serif;
-  font-size:clamp(44px,6vw,78px);
+  font-size:clamp(36px, 7vw, 78px);
   margin:18px 0 14px;
   letter-spacing:.2px;
 }
 header p{
   max-width:740px;
-  margin:0 auto 28px;
-  font-size:18px;
+  margin:0 auto 22px;
+  font-size:16px;
   color:rgba(245,245,247,.82);
-  line-height:1.6;
+  line-height:1.65;
 }
 .hero-actions{
   display:flex;
   justify-content:center;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
 }
 .btn{
@@ -188,13 +205,14 @@ header p{
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding:13px 18px;
+  padding:12px 16px;
   border-radius:999px;
   border:1px solid var(--border2);
   color:var(--text);
   text-decoration:none;
   background:rgba(255,255,255,.02);
   transition:.25s ease;
+  min-height:44px; /* good tap target */
 }
 .btn:hover{
   transform:translateY(-1px);
@@ -208,7 +226,7 @@ header p{
 .btn.primary:hover{ filter:brightness(.98); }
 
 .hero-shimmer{
-  margin:34px auto 0;
+  margin:28px auto 0;
   width:min(640px, 86vw);
   height:1px;
   background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
@@ -219,20 +237,21 @@ header p{
 section{
   max-width:1200px;
   margin:auto;
-  padding:110px 24px;
+  padding:90px 16px;
   position:relative;
   z-index:5;
 }
 h2{
   font-family:Playfair Display,serif;
-  font-size:36px;
-  margin:0 0 14px;
+  font-size:clamp(26px, 6vw, 36px);
+  margin:0 0 12px;
 }
 .sub{
   color:var(--muted);
   max-width:820px;
-  margin:0 0 40px;
-  line-height:1.6;
+  margin:0 0 28px;
+  line-height:1.65;
+  font-size:14px;
 }
 
 /* ---------- SCROLL-IN ANIMATIONS ---------- */
@@ -253,7 +272,7 @@ h2{
 .carousel-wrap{
   border:1px solid var(--border);
   border-radius:22px;
-  padding:18px;
+  padding:14px;
   background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
   box-shadow:var(--shadow);
 }
@@ -261,23 +280,28 @@ h2{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:14px;
+  gap:10px;
   margin-bottom:10px;
   flex-wrap:wrap;
 }
 
-/* FIXED FILTER PILL STYLE */
+/* MOBILE-FRIENDLY FILTER BAR */
 .filters{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+  gap:8px;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
   align-items:center;
   padding:8px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.08);
   background:rgba(255,255,255,.02);
   backdrop-filter: blur(10px);
+  scrollbar-width:none;
 }
+.filters::-webkit-scrollbar{ display:none; }
+
 .fbtn{
   height:34px;
   display:inline-flex;
@@ -292,6 +316,7 @@ h2{
   cursor:pointer;
   transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
   white-space:nowrap;
+  min-height:34px;
 }
 .fbtn:hover{
   transform:translateY(-1px);
@@ -316,11 +341,11 @@ h2{
 
 .carousel{
   display:flex;
-  gap:18px;
+  gap:14px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
-  padding:6px 2px 10px;
+  padding:6px 2px 8px;
 }
 .carousel::-webkit-scrollbar{height:10px}
 .carousel::-webkit-scrollbar-thumb{
@@ -340,10 +365,12 @@ h2{
   pointer-events:none;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
 }
+
+/* Mobile: make items a bit narrower/shorter */
 .carousel img{
-  height:420px;
+  height: clamp(320px, 52vh, 420px);
   width:auto;
-  max-width:85vw;
+  max-width: 82vw;
   border-radius:18px;
   cursor:pointer;
   display:block;
@@ -387,7 +414,7 @@ h2{
   background:rgba(255,255,255,.06);
 }
 
-/* ---------- DELIVERABLES ---------- */
+/* ---------- DELIVERABLES + BOOK GRID ---------- */
 .grid-2{
   display:grid;
   grid-template-columns:1.2fr .8fr;
@@ -397,7 +424,7 @@ h2{
 .deliver{
   border:1px solid var(--border);
   border-radius:22px;
-  padding:24px;
+  padding:20px;
   background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
   box-shadow:var(--shadow);
 }
@@ -429,11 +456,11 @@ h2{
 .li b{ font-weight:600; color:rgba(255,255,255,.92); }
 .li span{ color:rgba(255,255,255,.60); font-size:13px; line-height:1.5; }
 
-/* ---------- BOOK A SHOOT (MAILTO FORM) ---------- */
+/* ---------- FORM ---------- */
 .form{
   border:1px solid var(--border);
   border-radius:22px;
-  padding:24px;
+  padding:20px;
   background:rgba(255,255,255,.02);
 }
 .field{
@@ -454,6 +481,7 @@ input, select, textarea{
   padding:12px 12px;
   outline:none;
   font-family:inherit;
+  font-size:16px; /* prevents iOS zoom */
 }
 textarea{ min-height:110px; resize:vertical; }
 input:focus, select:focus, textarea:focus{
@@ -482,7 +510,7 @@ input:focus, select:focus, textarea:focus{
   background:rgba(255,255,255,.03);
   border:1px solid var(--border);
   border-radius:18px;
-  padding:22px;
+  padding:20px;
 }
 .card .num{
   display:inline-flex;
@@ -507,11 +535,11 @@ input:focus, select:focus, textarea:focus{
   font-size:14px;
 }
 
-/* ---------- BEFORE/AFTER SLIDER ---------- */
+/* ---------- BEFORE/AFTER ---------- */
 .ba{
   border:1px solid var(--border);
   border-radius:22px;
-  padding:18px;
+  padding:14px;
   background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
   box-shadow:var(--shadow);
 }
@@ -591,7 +619,7 @@ input[type="range"]{
 /* ---------- TESTIMONIALS ---------- */
 .testimonials{
   display:flex;
-  gap:18px;
+  gap:14px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
@@ -603,8 +631,8 @@ input[type="range"]{
   border-radius:999px;
 }
 .quote{
-  min-width:360px;
-  padding:26px;
+  min-width: min(360px, 86vw);
+  padding:22px;
   border-radius:18px;
   background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
   border:1px solid var(--border);
@@ -612,7 +640,7 @@ input[type="range"]{
   box-shadow:var(--shadow);
 }
 .quote .big{
-  font-size:16px;
+  font-size:15px;
   line-height:1.6;
   margin:0 0 14px;
   color:rgba(255,255,255,.90);
@@ -624,6 +652,7 @@ input[type="range"]{
   align-items:center;
   color:rgba(255,255,255,.62);
   font-size:13px;
+  flex-wrap:wrap;
 }
 .meta-pill{
   padding:6px 10px;
@@ -636,7 +665,7 @@ input[type="range"]{
 .pricing{
   border:1px solid var(--border);
   border-radius:22px;
-  padding:28px;
+  padding:22px;
   background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
   box-shadow:var(--shadow);
 }
@@ -661,7 +690,7 @@ input[type="range"]{
   box-shadow:var(--shadow);
 }
 details{
-  padding:18px 20px;
+  padding:16px 18px;
   border-top:1px solid rgba(255,255,255,.06);
 }
 details:first-child{ border-top:none; }
@@ -682,7 +711,7 @@ details p{
 /* ---------- CTA / CONTACT ---------- */
 .cta{
   text-align:center;
-  padding:74px 24px;
+  padding:58px 16px;
   border-radius:26px;
   border:1px solid var(--border);
   background:linear-gradient(180deg,#111115,#0b0b0e);
@@ -692,13 +721,14 @@ details p{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  margin-top:22px;
-  padding:14px 36px;
+  margin-top:18px;
+  padding:14px 30px;
   border-radius:999px;
   border:1px solid var(--border2);
   color:var(--text);
   text-decoration:none;
   transition:.25s ease;
+  min-height:44px;
 }
 .cta a:hover{
   background:#fff;
@@ -722,6 +752,9 @@ details p{
   padding:8px 12px;
   border-radius:999px;
   transition:.25s ease;
+  min-height:40px;
+  display:inline-flex;
+  align-items:center;
 }
 .social:hover{
   background:rgba(255,255,255,.08);
@@ -731,7 +764,7 @@ details p{
 
 /* ---------- FOOTER ---------- */
 footer{
-  padding:48px 24px;
+  padding:44px 16px calc(44px + var(--safeBottom));
   text-align:center;
   font-size:13px;
   color:var(--muted);
@@ -749,7 +782,7 @@ footer{
   align-items:center;
   justify-content:center;
   z-index:999;
-  padding:24px;
+  padding: max(14px, var(--safeTop)) 12px max(14px, var(--safeBottom));
 }
 .lightbox-inner{
   position:relative;
@@ -794,7 +827,7 @@ footer{
 .lb-close{
   pointer-events:auto;
   cursor:pointer;
-  width:38px;height:38px;
+  width:42px;height:42px;
   border-radius:999px;
   display:inline-flex;
   align-items:center;
@@ -823,12 +856,12 @@ footer{
   color:#fff;
   cursor:pointer;
   user-select:none;
-  opacity:.85;
+  opacity:.9;
   transition:.2s ease;
 }
 .lb-arrow:hover{ opacity:1; transform:translateY(-50%) scale(1.02); }
-.lb-prev{ left:14px; }
-.lb-next{ right:14px; }
+.lb-prev{ left:10px; }
+.lb-next{ right:10px; }
 
 .lb-bottom{
   position:absolute;
@@ -839,10 +872,11 @@ footer{
   justify-content:space-between;
   align-items:flex-end;
   gap:12px;
+  flex-wrap:wrap;
 }
 .lb-meta{
   pointer-events:none;
-  max-width:70%;
+  max-width:100%;
   display:flex;
   flex-direction:column;
   gap:6px;
@@ -880,13 +914,23 @@ footer{
   background:rgba(0,0,0,.25);
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* ---------- MOBILE + TABLET BREAKPOINTS ---------- */
 @media (max-width: 980px){
   .grid-3{ grid-template-columns:1fr; }
   .grid-2{ grid-template-columns:1fr; }
-  .quote{ min-width:320px; }
-  .nav-inner{ padding:16px 22px; }
-  .lb-meta{ max-width:100%; }
+  .nav-inner{ padding:calc(12px + var(--safeTop)) 12px 12px; }
+  section{ padding:80px 14px; }
+}
+
+@media (max-width: 520px){
+  header{ padding:calc(105px + var(--safeTop)) 14px calc(70px + var(--safeBottom)); }
+  .kicker{ font-size:12px; padding:9px 12px; }
+  .hero-actions .btn{ width:100%; max-width:420px; }
+  .carousel-wrap{ padding:12px; }
+  .badge{ left:10px; top:10px; }
+  .lb-arrow{ width:46px; height:46px; }
+  .lb-prev{ left:6px; }
+  .lb-next{ right:6px; }
 }
 </style>
 </head>
@@ -901,7 +945,7 @@ footer{
       <span class="brand-dot"></span>
       <span>egsk.raw</span>
     </div>
-    <div>
+    <div class="nav-links" id="navLinks">
       <a href="#highlights">Highlights</a>
       <a href="#available">Available</a>
       <a href="#deliverables">Deliverables</a>
@@ -937,7 +981,7 @@ footer{
 
 <section id="highlights" class="reveal">
   <h2>Highlights</h2>
-  <p class="sub">Click an image to view full screen. Use arrows (or swipe) to navigate. Filter by type.</p>
+  <p class="sub">Tap an image to view full screen. Swipe or use arrows to navigate. Filter by type.</p>
 
   <div class="carousel-wrap reveal delay-1">
     <div class="carousel-top">
@@ -983,7 +1027,7 @@ footer{
     </div>
   </div>
 
-  <p class="sub reveal delay-2" style="margin-top:22px; max-width:820px;">
+  <p class="sub reveal delay-2" style="margin-top:20px; max-width:820px;">
     Trusted by local enthusiasts — shot across Doha. If you want a clean, cinematic look for your build, let’s plan a session.
   </p>
 </section>
@@ -1021,7 +1065,7 @@ footer{
           <div class="tick">✓</div>
           <div>
             <b>Cinematic color grade</b><br>
-            <span>Consistent tone, controlled highlights, and clean skin/bodywork texture.</span>
+            <span>Consistent tone, controlled highlights, and clean texture.</span>
           </div>
         </li>
 
@@ -1029,7 +1073,7 @@ footer{
           <div class="tick">✓</div>
           <div>
             <b>Fast turnaround</b><br>
-            <span>Typical delivery is within 1-2 Business weeks (depends on the project).</span>
+            <span>Typical delivery is within 1–2 business weeks (project-dependent).</span>
           </div>
         </li>
 
@@ -1037,7 +1081,7 @@ footer{
           <div class="tick">✓</div>
           <div>
             <b>Optional add-ons</b><br>
-            <span>Rollers, extra locations, on request.</span>
+            <span>Rollers, extra locations, special edits — on request.</span>
           </div>
         </li>
       </ul>
@@ -1046,7 +1090,7 @@ footer{
     <div class="form reveal delay-2">
       <h3 style="margin:0 0 12px;font-size:18px;font-weight:600;">Quick Contact</h3>
       <p style="margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.6;">
-        Don’t overthink it — send your car + vibe and I’ll reply with a plan.
+        Send your car + vibe and I’ll reply with a plan.
       </p>
       <a class="btn primary" href="#book">Book a Shoot</a>
       <a class="btn" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">DM on Instagram</a>
@@ -1081,7 +1125,7 @@ footer{
 
 <section id="edit" class="reveal">
   <h2>Before / After</h2>
-  <p class="sub">Drag the divider (or use the slider). Works on mouse + touch.</p>
+  <p class="sub">Drag the divider (or use the slider). Works on touch.</p>
 
   <div class="ba reveal delay-1">
     <div class="ba-stage" id="baStage">
@@ -1132,7 +1176,7 @@ footer{
 
 <section id="book" class="reveal">
   <h2>Book a Shoot</h2>
-  <p class="sub">Fill this out and it’ll open an email with everything formatted — easy.</p>
+  <p class="sub">Fill this out and it’ll open an email with everything formatted.</p>
 
   <div class="grid-2">
     <div class="form reveal delay-1">
@@ -1174,7 +1218,7 @@ footer{
       </div>
 
       <div class="small-note">
-        Surprise tip: if you mention <b>“rollers”</b> and your preferred route/time, the planning is faster.
+        Tip: if you mention <b>“rollers”</b> and your preferred route/time, planning is faster.
       </div>
     </div>
 
@@ -1200,15 +1244,15 @@ footer{
   <div class="faq reveal delay-1">
     <details>
       <summary>How do I book?</summary>
-      <p>Use the Book a Shoot form (opens a formatted email), or DM me on Instagram @egsk.raw.</p>
+      <p>Use the form (opens a formatted email), or DM me on Instagram @egsk.raw.</p>
     </details>
     <details>
       <summary>Do you shoot rollers?</summary>
-      <p>Yes — rollers are available at an extra charge. Tell me your preferred route/time and whether you want cinematic or clean style.</p>
+      <p>Yes — rollers are available as an add-on. Tell me your preferred route/time and the style you want.</p>
     </details>
     <details>
       <summary>How fast is delivery?</summary>
-      <p>Typical delivery is 1-2 Business weeks depending on the project size and add-ons.</p>
+      <p>Typical delivery is 1–2 business weeks depending on the project size and add-ons.</p>
     </details>
     <details>
       <summary>Do you travel within Qatar?</summary>
@@ -1225,7 +1269,7 @@ footer{
     <h3>Every project is unique</h3>
     <p>
       Every project is unique — contact for more info and a tailored quote.
-      Tell me your car, your preferred vibe (street / cinematic / night / rollers), and what you need delivered.
+      Tell me your car, your preferred vibe, and what you need delivered.
     </p>
   </div>
 </section>
@@ -1352,7 +1396,7 @@ footer{
 })();
 
 /* -------------------------
-   Before/After slider (range + drag handle/knob/stage)
+   Before/After slider (range + drag)
 -------------------------- */
 (() => {
   const stage = document.getElementById('baStage');
@@ -1389,12 +1433,7 @@ footer{
     stage.setPointerCapture?.(e.pointerId);
     setPct(fromClientX(e.clientX));
   };
-
-  const onMove = (e) => {
-    if(!dragging) return;
-    setPct(fromClientX(e.clientX));
-  };
-
+  const onMove = (e) => { if(dragging) setPct(fromClientX(e.clientX)); };
   const onUp = () => { dragging = false; };
 
   stage.addEventListener('pointerdown', onDown);
@@ -1446,38 +1485,14 @@ const lbTitle = document.getElementById('lbTitle');
 const lbSub = document.getElementById('lbSub');
 const lbTags = document.getElementById('lbTags');
 
-/* UPDATED TAGS (make sense for your actual images) */
+/* Tags that match your current set */
 const meta = [
-  {
-    title: "Front Three-Quarter",
-    sub: "Mercedes • Doha, Qatar",
-    tags: ["Street / Day", "Golden Hour", "Static", "Lens Flare"]
-  },
-  {
-    title: "Side Detail + Light",
-    sub: "Mercedes • Doha, Qatar",
-    tags: ["Street / Day", "Details", "Body Lines", "Warm Light"]
-  },
-  {
-    title: "Rear Composition",
-    sub: "Mercedes • Doha, Qatar",
-    tags: ["Street / Day", "Rear Angle", "Leading Lines", "Clean Frame"]
-  },
-  {
-    title: "Wide Environmental",
-    sub: "Mercedes • Doha, Qatar",
-    tags: ["Street / Day", "Wide Shot", "Location Context", "Minimal"]
-  },
-  {
-    title: "Badge Detail",
-    sub: "Lamborghini • Detail Shot",
-    tags: ["Details", "Low Light", "Contrast", "Cinematic"]
-  },
-  {
-    title: "Wheel Center Cap",
-    sub: "Lamborghini • Detail Shot",
-    tags: ["Details", "Symmetry", "Low Light", "Texture"]
-  }
+  { title:"Front Three-Quarter", sub:"Mercedes • Doha, Qatar", tags:["Street / Day","Golden Hour","Static","Lens Flare"] },
+  { title:"Side Detail + Light", sub:"Mercedes • Doha, Qatar", tags:["Street / Day","Details","Body Lines","Warm Light"] },
+  { title:"Rear Composition", sub:"Mercedes • Doha, Qatar", tags:["Street / Day","Rear Angle","Leading Lines","Clean Frame"] },
+  { title:"Wide Environmental", sub:"Mercedes • Doha, Qatar", tags:["Street / Day","Wide Shot","Location Context","Minimal"] },
+  { title:"Badge Detail", sub:"Lamborghini • Detail Shot", tags:["Details","Low Light","Contrast","Cinematic"] },
+  { title:"Wheel Center Cap", sub:"Lamborghini • Detail Shot", tags:["Details","Symmetry","Low Light","Texture"] }
 ];
 
 let current = 0;
@@ -1585,6 +1600,11 @@ lbInner.addEventListener('touchend', (e) => {
     else prevImg();
   }
 }, { passive:true });
+
+/* -------------------------
+   Mobile UX tiny polish:
+   - close lightbox on iOS back swipe-ish: (still Esc/close)
+-------------------------- */
 </script>
 
 </body>
