@@ -91,33 +91,65 @@ h2{
 }
 
 /* ---------- CAROUSEL ---------- */
+.carousel-wrap{
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  background:rgba(255,255,255,.02);
+}
 .carousel{
   display:flex;
-  gap:24px;
+  gap:22px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
+  padding-bottom:10px;
+  -webkit-overflow-scrolling:touch;
+}
+.carousel::-webkit-scrollbar{height:10px}
+.carousel::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.12);
+  border-radius:999px;
 }
 .carousel img{
   height:420px;
-  border-radius:16px;
+  width:auto;
+  max-width:85vw;
+  border-radius:18px;
   cursor:pointer;
   scroll-snap-align:center;
+  border:1px solid rgba(255,255,255,.08);
+  background:#0f0f14;
+  transition:transform .25s ease, opacity .25s ease;
+}
+.carousel img:hover{transform:scale(1.01)}
+.carousel img.is-broken{
+  opacity:.5;
+  filter:grayscale(1);
 }
 
 /* ---------- LIGHTBOX ---------- */
 .lightbox{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.9);
+  background:rgba(0,0,0,.92);
   display:none;
   align-items:center;
   justify-content:center;
   z-index:999;
+  padding:24px;
 }
 .lightbox img{
-  max-width:90%;
-  max-height:90%;
-  border-radius:12px;
+  max-width:92%;
+  max-height:92%;
+  border-radius:14px;
+}
+.lightbox .hint{
+  position:fixed;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:12px;
+  color:rgba(255,255,255,.65);
 }
 
 /* ---------- TESTIMONIALS ---------- */
@@ -126,6 +158,7 @@ h2{
   gap:24px;
   overflow-x:auto;
   scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
 }
 .quote{
   min-width:320px;
@@ -201,13 +234,17 @@ footer{
 <section id="highlights">
   <h2>Highlights</h2>
   <p class="sub">A glimpse into recent work.</p>
- <div class="carousel">
-  <img src="images/1.jpg" alt="Automotive photo 1">
-  <img src="images/2.jpg" alt="Automotive photo 2">
-  <img src="images/3.jpg" alt="Automotive photo 3">
-  <img src="images/4.jpg" alt="Automotive photo 4">
-  <img src="images/5.jpg" alt="Automotive photo 5">
-  <img src="images/6.jpg" alt="Automotive photo 6">
+
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel">
+      <!-- Keep these paths. The script below will auto-fix common extension issues if some fail. -->
+      <img src="images/1.jpg" alt="Automotive photo 1" loading="lazy" decoding="async">
+      <img src="images/2.jpg" alt="Automotive photo 2" loading="lazy" decoding="async">
+      <img src="images/3.jpg" alt="Automotive photo 3" loading="lazy" decoding="async">
+      <img src="images/4.jpg" alt="Automotive photo 4" loading="lazy" decoding="async">
+      <img src="images/5.jpg" alt="Automotive photo 5" loading="lazy" decoding="async">
+      <img src="images/6.jpg" alt="Automotive photo 6" loading="lazy" decoding="async">
+    </div>
   </div>
 </section>
 
@@ -230,8 +267,11 @@ footer{
     <h2>Ready to Shoot?</h2>
     <p class="sub">Reach out and let’s create something clean and cinematic.</p>
 
-    <!-- CHANGE THIS LINK -->
-    <a href="mailto:your@email.com">Contact Me</a>
+    <!-- CHANGE THIS to your real email or website -->
+    <a href="mailto:egskraw@gmail.com">Contact Me</a>
+    <!-- Example website redirect:
+    <a href="https://egskraw.studio">Contact Me</a>
+    -->
   </div>
 </section>
 
@@ -239,24 +279,62 @@ footer{
   © 2026 egsk.raw — All rights reserved
 </footer>
 
-<div class="lightbox" id="lightbox">
-  <img src="" id="lightbox-img">
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img src="" id="lightbox-img" alt="">
+  <div class="hint">Click anywhere to close</div>
 </div>
 
 <script>
-const imgs = document.querySelectorAll('.carousel img');
-const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightbox-img');
+  const imgs = document.querySelectorAll('.carousel img');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
 
-imgs.forEach(img=>{
-  img.onclick=()=>{
-    lbImg.src=img.src;
-    lightbox.style.display='flex';
-  }
-});
-lightbox.onclick=()=>lightbox.style.display='none';
+  // Lightbox
+  imgs.forEach(img=>{
+    img.addEventListener('click', ()=>{
+      if(!img || !img.src) return;
+      lbImg.src = img.src;
+      lightbox.style.display = 'flex';
+      lightbox.setAttribute('aria-hidden','false');
+    });
+  });
+  lightbox.addEventListener('click', ()=>{
+    lightbox.style.display = 'none';
+    lightbox.setAttribute('aria-hidden','true');
+    lbImg.src = '';
+  });
+
+  // Auto-fix common extension mismatches (jpg/JPG/jpeg) if an image fails
+  // This helps when files are renamed or exported weirdly.
+  const tryExtensions = (imgEl, originalSrc) => {
+    const base = originalSrc.replace(/\.(jpg|jpeg|png|webp)$/i,'');
+    const tries = [base + '.jpg', base + '.JPG', base + '.jpeg', base + '.JPEG', base + '.png', base + '.webp'];
+    let i = 0;
+
+    const tryNext = () => {
+      i++;
+      if(i >= tries.length){
+        imgEl.classList.add('is-broken');
+        return;
+      }
+      imgEl.src = tries[i];
+    };
+
+    const handler = () => tryNext();
+    imgEl.addEventListener('error', handler, { once:true });
+
+    // start the first alternative try
+    imgEl.src = tries[1];
+  };
+
+  imgs.forEach(img=>{
+    img.addEventListener('error', ()=>{
+      // If 5/6 work but 1-4 fail, this will usually fix it automatically.
+      const original = img.getAttribute('src');
+      tryExtensions(img, original);
+    }, { once:true });
+  });
 </script>
 
 </body>
 </html>
-
