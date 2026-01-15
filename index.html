@@ -14,9 +14,7 @@
 <meta property="og:image" content="images/hero.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<!-- Favicon (optional: add /favicon.png in root) -->
 <link rel="icon" href="favicon.png" />
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -128,7 +126,6 @@ header{
   z-index:5;
   overflow:hidden;
 }
-/* hero background */
 header::before{
   content:'';
   position:absolute;
@@ -210,7 +207,6 @@ header p{
 }
 .btn.primary:hover{ filter:brightness(.98); }
 
-/* --- surprise: tiny shimmer line under hero --- */
 .hero-shimmer{
   margin:34px auto 0;
   width:min(640px, 86vw);
@@ -346,33 +342,6 @@ h2{
   border:1px solid rgba(255,255,255,.12);
   color:rgba(255,255,255,.86);
   backdrop-filter:blur(6px);
-}
-
-/* --- surprise: “VIEW” cursor label on images --- */
-.view-cursor{
-  position:fixed;
-  z-index:1000;
-  pointer-events:none;
-  transform:translate(-50%, -50%);
-  opacity:0;
-  transition:opacity .18s ease, transform .18s ease;
-}
-.view-cursor span{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.35);
-  backdrop-filter:blur(8px);
-  color:rgba(255,255,255,.9);
-  font-size:12px;
-  letter-spacing:.2px;
-}
-.view-cursor.show{
-  opacity:1;
-  transform:translate(-50%, -50%) scale(1);
 }
 
 /* ---------- AVAILABLE FOR (PILLS) ---------- */
@@ -529,6 +498,8 @@ input:focus, select:focus, textarea:focus{
   overflow:hidden;
   background:var(--panel2);
   aspect-ratio: 16 / 9;
+  cursor:ew-resize; /* makes it feel draggable */
+  touch-action:none; /* important for touch dragging */
 }
 .ba-stage img{
   position:absolute;
@@ -565,6 +536,7 @@ input:focus, select:focus, textarea:focus{
   justify-content:center;
   color:#fff;
   font-size:18px;
+  cursor:ew-resize;
 }
 .ba-labels{
   position:absolute;
@@ -956,7 +928,6 @@ footer{
     </div>
 
     <div class="carousel" id="carousel">
-      <!-- Add data-category values for filtering (space-separated allowed) -->
       <div class="frame" data-category="night">
         <span class="badge">01</span>
         <img src="images/a1.jpg" alt="Highlight 01" loading="lazy" decoding="async">
@@ -1035,7 +1006,7 @@ footer{
           <div class="tick">✓</div>
           <div>
             <b>Fast turnaround</b><br>
-            <span>Typical delivery is within 48–72 hours (depends on the project).</span>
+            <span>Typical delivery is within 1-2 Business weeks (depends on the project).</span>
           </div>
         </li>
 
@@ -1043,7 +1014,7 @@ footer{
           <div class="tick">✓</div>
           <div>
             <b>Optional add-ons</b><br>
-            <span>Rollers, extra locations, and short social clips on request.</span>
+            <span>Rollers, extra locations, on request.</span>
           </div>
         </li>
       </ul>
@@ -1087,11 +1058,10 @@ footer{
 
 <section id="edit" class="reveal">
   <h2>Before / After</h2>
-  <p class="sub">One example — the same frame before grading and after finishing. Drag the slider.</p>
+  <p class="sub">Drag the divider (or use the slider). Works on mouse + touch.</p>
 
   <div class="ba reveal delay-1">
     <div class="ba-stage" id="baStage">
-      <!-- Replace these with your own images -->
       <img src="images/before.jpg" alt="Before edit">
       <img class="ba-after" id="baAfter" src="images/after.jpg" alt="After edit">
       <div class="ba-labels">
@@ -1099,11 +1069,10 @@ footer{
         <div class="ba-pill">After</div>
       </div>
       <div class="ba-handle" id="baHandle"></div>
-      <div class="ba-knob" id="baKnob">↔</div>
+      <div class="ba-knob" id="baKnob" aria-label="Drag to compare">↔</div>
     </div>
 
     <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Before/After slider">
-    <div class="small-note">Tip: Use a frame with obvious lighting/color change for the best effect.</div>
   </div>
 </section>
 
@@ -1212,11 +1181,11 @@ footer{
     </details>
     <details>
       <summary>Do you shoot rollers?</summary>
-      <p>Yes — rollers are available. Tell me your preferred route/time and whether you want cinematic or clean style.</p>
+      <p>Yes — rollers are available at an extra charge. Tell me your preferred route/time and whether you want cinematic or clean style.</p>
     </details>
     <details>
       <summary>How fast is delivery?</summary>
-      <p>Typical delivery is 48–72 hours depending on the project size and add-ons.</p>
+      <p>Typical delivery is 1-2 Business weeks depending on the project size and add-ons.</p>
     </details>
     <details>
       <summary>Do you travel within Qatar?</summary>
@@ -1279,9 +1248,6 @@ footer{
   </div>
 </div>
 
-<!-- Surprise: view cursor label -->
-<div class="view-cursor" id="viewCursor"><span id="viewCursorText">VIEW</span></div>
-
 <script>
 /* -------------------------
    Scroll reveal
@@ -1343,25 +1309,58 @@ footer{
 })();
 
 /* -------------------------
-   Before/After slider
+   Before/After slider (range + drag handle/knob/stage)
 -------------------------- */
 (() => {
+  const stage = document.getElementById('baStage');
   const range = document.getElementById('baRange');
   const after = document.getElementById('baAfter');
   const handle = document.getElementById('baHandle');
   const knob = document.getElementById('baKnob');
 
-  const set = (v) => {
-    const pct = Math.max(0, Math.min(100, Number(v)));
-    after.style.clipPath = `inset(0 0 0 ${pct}%)`;
-    handle.style.left = pct + '%';
-    knob.style.left = pct + '%';
+  if(!stage || !range || !after || !handle || !knob) return;
+
+  const clamp = (n,min,max)=>Math.max(min, Math.min(max,n));
+
+  const setPct = (pct) => {
+    const v = clamp(pct, 0, 100);
+    after.style.clipPath = `inset(0 0 0 ${v}%)`;
+    handle.style.left = v + '%';
+    knob.style.left = v + '%';
+    range.value = String(v);
   };
 
-  if(range && after && handle && knob){
-    set(range.value);
-    range.addEventListener('input', e => set(e.target.value));
-  }
+  // init
+  setPct(Number(range.value || 50));
+  range.addEventListener('input', e => setPct(Number(e.target.value)));
+
+  // drag logic (mouse + touch via pointer events)
+  let dragging = false;
+
+  const fromClientX = (clientX) => {
+    const rect = stage.getBoundingClientRect();
+    const x = clamp(clientX - rect.left, 0, rect.width);
+    return (x / rect.width) * 100;
+  };
+
+  const onDown = (e) => {
+    dragging = true;
+    stage.setPointerCapture?.(e.pointerId);
+    setPct(fromClientX(e.clientX));
+  };
+
+  const onMove = (e) => {
+    if(!dragging) return;
+    setPct(fromClientX(e.clientX));
+  };
+
+  const onUp = () => { dragging = false; };
+
+  // Make the whole stage draggable (including the line + knob)
+  stage.addEventListener('pointerdown', onDown);
+  stage.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', onUp);
+  window.addEventListener('pointercancel', onUp);
 })();
 
 /* -------------------------
@@ -1395,9 +1394,6 @@ ${notes || "-"}\n\n— Sent from egskraw.studio`
 /* -------------------------
    Lightbox (arrows + counter + metadata + keyboard + swipe)
 -------------------------- */
-const thumbs = Array.from(document.querySelectorAll('#carousel img'))
-  .filter(img => img.closest('.frame') && img.closest('.frame').style.display !== 'none');
-
 const lightbox = document.getElementById('lightbox');
 const lbImg = document.getElementById('lightbox-img');
 const lbCounter = document.getElementById('lbCounter');
@@ -1410,13 +1406,12 @@ const lbTitle = document.getElementById('lbTitle');
 const lbSub = document.getElementById('lbSub');
 const lbTags = document.getElementById('lbTags');
 
-/* EDIT THESE: metadata for each image (match carousel order) */
 const meta = [
   { title: "Night Feature", sub: "Doha, Qatar", tags:["Cinematic","Street","Low Light"] },
   { title: "Detail Study", sub: "Doha, Qatar", tags:["Details","Contrast","Clean Lines"] },
   { title: "Front Angle", sub: "Doha, Qatar", tags:["Composition","Aggressive","Sharp"] },
   { title: "Rear View", sub: "Doha, Qatar", tags:["Depth","Shape","Highlights"] },
-  { title: "Rolling Moment", sub: "Qatar", tags:["Motion","Rollers","Story"] },
+  { title: "Rolling Moment", sub: "Qatar", tags:["Motion","Details","Story"] },
   { title: "Badge Close-Up", sub: "Qatar", tags:["Texture","Brand","Micro Detail"] },
 ];
 
@@ -1441,9 +1436,11 @@ function renderMeta(){
     lbTags.appendChild(el);
   });
 }
+
 function updateCounter(vs){
   lbCounter.textContent = `${current + 1} / ${vs.length}`;
 }
+
 function openLightbox(index){
   const vs = getVisibleThumbs();
   current = Math.max(0, Math.min(vs.length - 1, index));
@@ -1454,12 +1451,14 @@ function openLightbox(index){
   lightbox.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
 }
+
 function closeLightbox(){
   lightbox.style.display = 'none';
   lightbox.setAttribute('aria-hidden','true');
   lbImg.src = '';
   document.body.style.overflow = '';
 }
+
 function nextImg(){
   const vs = getVisibleThumbs();
   current = (current + 1) % vs.length;
@@ -1467,6 +1466,7 @@ function nextImg(){
   updateCounter(vs);
   renderMeta();
 }
+
 function prevImg(){
   const vs = getVisibleThumbs();
   current = (current - 1 + vs.length) % vs.length;
@@ -1475,11 +1475,10 @@ function prevImg(){
   renderMeta();
 }
 
-document.querySelectorAll('#carousel .frame').forEach((frame, i) => {
+document.querySelectorAll('#carousel .frame').forEach((frame) => {
   const img = frame.querySelector('img');
   if(!img) return;
   img.addEventListener('click', () => {
-    // compute index among visible items
     const vs = getVisibleThumbs();
     const idx = vs.indexOf(img);
     openLightbox(idx === -1 ? 0 : idx);
@@ -1521,36 +1520,6 @@ lbInner.addEventListener('touchend', (e) => {
     else prevImg();
   }
 }, { passive:true });
-
-/* -------------------------
-   Surprise: VIEW cursor label on images
--------------------------- */
-(() => {
-  const c = document.getElementById('viewCursor');
-  const t = document.getElementById('viewCursorText');
-  const targets = document.querySelectorAll('#carousel img');
-
-  const move = (e) => {
-    c.style.left = e.clientX + 'px';
-    c.style.top = e.clientY + 'px';
-  };
-
-  targets.forEach(img => {
-    img.addEventListener('mouseenter', () => { t.textContent = 'VIEW'; c.classList.add('show'); });
-    img.addEventListener('mouseleave', () => { c.classList.remove('show'); });
-    img.addEventListener('mousemove', move);
-  });
-
-  // Lightbox arrows: show NEXT/PREV label when hovering buttons
-  const set = (txt) => { t.textContent = txt; c.classList.add('show'); };
-  const hide = () => c.classList.remove('show');
-
-  [lbNext, lbPrev].forEach(btn => {
-    btn.addEventListener('mouseenter', (e) => set(btn === lbNext ? 'NEXT' : 'PREV'));
-    btn.addEventListener('mousemove', move);
-    btn.addEventListener('mouseleave', hide);
-  });
-})();
 </script>
 
 </body>
