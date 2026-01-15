@@ -265,27 +265,50 @@ h2{
   margin-bottom:10px;
   flex-wrap:wrap;
 }
+
+/* FIXED FILTER PILL STYLE */
 .filters{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
+  align-items:center;
+  padding:8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+  backdrop-filter: blur(10px);
 }
 .fbtn{
-  border:1px solid var(--border);
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
   background:rgba(255,255,255,.02);
   color:rgba(255,255,255,.78);
-  padding:8px 12px;
-  border-radius:999px;
   font-size:13px;
   cursor:pointer;
-  transition:.2s ease;
+  transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  white-space:nowrap;
 }
-.fbtn:hover{ background:rgba(255,255,255,.06); transform:translateY(-1px); }
+.fbtn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.06);
+  color:rgba(255,255,255,.92);
+}
 .fbtn.active{
   background:#fff;
   color:#000;
   border-color:#fff;
 }
+.fbtn:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+  transform:none;
+}
+
 .carousel-meta{
   color:rgba(255,255,255,.55);
   font-size:13px;
@@ -498,8 +521,8 @@ input:focus, select:focus, textarea:focus{
   overflow:hidden;
   background:var(--panel2);
   aspect-ratio: 16 / 9;
-  cursor:ew-resize; /* makes it feel draggable */
-  touch-action:none; /* important for touch dragging */
+  cursor:ew-resize;
+  touch-action:none;
 }
 .ba-stage img{
   position:absolute;
@@ -920,7 +943,7 @@ footer{
     <div class="carousel-top">
       <div class="filters" id="filters">
         <button class="fbtn active" data-filter="all">All</button>
-        <button class="fbtn" data-filter="night">Night</button>
+        <button class="fbtn" data-filter="street">Street / Day</button>
         <button class="fbtn" data-filter="rollers">Rollers</button>
         <button class="fbtn" data-filter="details">Details</button>
       </div>
@@ -928,27 +951,27 @@ footer{
     </div>
 
     <div class="carousel" id="carousel">
-      <div class="frame" data-category="night">
+      <div class="frame" data-category="street">
         <span class="badge">01</span>
         <img src="images/a1.jpg" alt="Highlight 01" loading="lazy" decoding="async">
       </div>
 
-      <div class="frame" data-category="details">
+      <div class="frame" data-category="street details">
         <span class="badge">02</span>
         <img src="images/a2.jpg" alt="Highlight 02" loading="lazy" decoding="async">
       </div>
 
-      <div class="frame" data-category="night">
+      <div class="frame" data-category="street">
         <span class="badge">03</span>
         <img src="images/a3.jpg" alt="Highlight 03" loading="lazy" decoding="async">
       </div>
 
-      <div class="frame" data-category="night details">
+      <div class="frame" data-category="street details">
         <span class="badge">04</span>
         <img src="images/a4.jpg" alt="Highlight 04" loading="lazy" decoding="async">
       </div>
 
-      <div class="frame" data-category="rollers">
+      <div class="frame" data-category="details">
         <span class="badge">05</span>
         <img src="images/5.jpg" alt="Highlight 05" loading="lazy" decoding="async">
       </div>
@@ -1279,12 +1302,31 @@ footer{
 })();
 
 /* -------------------------
-   Highlights filtering
+   Highlights filtering (with auto-disable + counts)
 -------------------------- */
 (() => {
   const buttons = Array.from(document.querySelectorAll('.fbtn'));
   const frames = Array.from(document.querySelectorAll('#carousel .frame'));
   const count = document.getElementById('visibleCount');
+
+  function categoryCounts(){
+    const map = {};
+    frames.forEach(f => {
+      const cats = (f.dataset.category || '').split(/\s+/).filter(Boolean);
+      cats.forEach(c => map[c] = (map[c] || 0) + 1);
+    });
+    map.all = frames.length;
+    return map;
+  }
+
+  const counts = categoryCounts();
+
+  buttons.forEach(b => {
+    const key = b.dataset.filter;
+    const n = counts[key] || 0;
+    if(key !== "all") b.textContent = `${b.textContent} (${n})`;
+    if(key !== "all" && n === 0) b.disabled = true;
+  });
 
   const apply = (filter) => {
     let shown = 0;
@@ -1299,6 +1341,7 @@ footer{
 
   buttons.forEach(b => {
     b.addEventListener('click', () => {
+      if(b.disabled) return;
       buttons.forEach(x => x.classList.remove('active'));
       b.classList.add('active');
       apply(b.dataset.filter);
@@ -1330,11 +1373,9 @@ footer{
     range.value = String(v);
   };
 
-  // init
   setPct(Number(range.value || 50));
   range.addEventListener('input', e => setPct(Number(e.target.value)));
 
-  // drag logic (mouse + touch via pointer events)
   let dragging = false;
 
   const fromClientX = (clientX) => {
@@ -1356,7 +1397,6 @@ footer{
 
   const onUp = () => { dragging = false; };
 
-  // Make the whole stage draggable (including the line + knob)
   stage.addEventListener('pointerdown', onDown);
   stage.addEventListener('pointermove', onMove);
   window.addEventListener('pointerup', onUp);
@@ -1406,36 +1446,37 @@ const lbTitle = document.getElementById('lbTitle');
 const lbSub = document.getElementById('lbSub');
 const lbTags = document.getElementById('lbTags');
 
+/* UPDATED TAGS (make sense for your actual images) */
 const meta = [
   {
-    title: "Golden Hour Front",
+    title: "Front Three-Quarter",
     sub: "Mercedes • Doha, Qatar",
-    tags: ["Golden Hour", "Front Angle", "Street", "Natural Light"]
+    tags: ["Street / Day", "Golden Hour", "Static", "Lens Flare"]
   },
   {
-    title: "Rear Perspective",
+    title: "Side Detail + Light",
     sub: "Mercedes • Doha, Qatar",
-    tags: ["Rear Angle", "Urban", "Composition", "Clean Lines"]
+    tags: ["Street / Day", "Details", "Body Lines", "Warm Light"]
   },
   {
-    title: "Wide Environment Shot",
+    title: "Rear Composition",
     sub: "Mercedes • Doha, Qatar",
-    tags: ["Wide Shot", "Architecture", "Context", "Street"]
+    tags: ["Street / Day", "Rear Angle", "Leading Lines", "Clean Frame"]
   },
   {
-    title: "Top-Down Static",
+    title: "Wide Environmental",
     sub: "Mercedes • Doha, Qatar",
-    tags: ["Top View", "Static", "Framing", "Minimal"]
+    tags: ["Street / Day", "Wide Shot", "Location Context", "Minimal"]
   },
   {
     title: "Badge Detail",
     sub: "Lamborghini • Detail Shot",
-    tags: ["Detail", "Badge", "Low Light", "Contrast"]
+    tags: ["Details", "Low Light", "Contrast", "Cinematic"]
   },
   {
-    title: "Wheel Center Detail",
+    title: "Wheel Center Cap",
     sub: "Lamborghini • Detail Shot",
-    tags: ["Detail", "Wheel", "Low Light", "Symmetry"]
+    tags: ["Details", "Symmetry", "Low Light", "Texture"]
   }
 ];
 
@@ -1548,4 +1589,3 @@ lbInner.addEventListener('touchend', (e) => {
 
 </body>
 </html>
-
