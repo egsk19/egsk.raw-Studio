@@ -110,21 +110,42 @@ h2{
   background:rgba(255,255,255,.12);
   border-radius:999px;
 }
+.carousel .frame{
+  position:relative;
+  scroll-snap-align:center;
+  flex:0 0 auto;
+}
 .carousel img{
   height:420px;
   width:auto;
   max-width:85vw;
   border-radius:18px;
   cursor:pointer;
-  scroll-snap-align:center;
   border:1px solid rgba(255,255,255,.08);
   background:#0f0f14;
+  display:block;
   transition:transform .25s ease, opacity .25s ease;
 }
 .carousel img:hover{transform:scale(1.01)}
-.carousel img.is-broken{
-  opacity:.5;
+.badge{
+  position:absolute;
+  left:12px;
+  top:12px;
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.85);
+  backdrop-filter:blur(6px);
+}
+.frame.broken img{
+  opacity:.25;
   filter:grayscale(1);
+}
+.frame.broken .badge{
+  background:rgba(255,60,60,.15);
+  border-color:rgba(255,60,60,.25);
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -237,13 +258,14 @@ footer{
 
   <div class="carousel-wrap">
     <div class="carousel" id="carousel">
-      <!-- Keep these paths. The script below will auto-fix common extension issues if some fail. -->
-      <img src="images/1.jpg" alt="Automotive photo 1" loading="lazy" decoding="async">
-      <img src="images/2.jpg" alt="Automotive photo 2" loading="lazy" decoding="async">
-      <img src="images/3.jpg" alt="Automotive photo 3" loading="lazy" decoding="async">
-      <img src="images/4.jpg" alt="Automotive photo 4" loading="lazy" decoding="async">
-      <img src="images/5.jpg" alt="Automotive photo 5" loading="lazy" decoding="async">
-      <img src="images/6.jpg" alt="Automotive photo 6" loading="lazy" decoding="async">
+      <!-- IMPORTANT: rename/reupload the first 4 to a1.jpg..a4.jpg -->
+      <div class="frame"><span class="badge">01</span><img src="images/a1.jpg" alt="Automotive photo 1" loading="lazy" decoding="async"></div>
+      <div class="frame"><span class="badge">02</span><img src="images/a2.jpg" alt="Automotive photo 2" loading="lazy" decoding="async"></div>
+      <div class="frame"><span class="badge">03</span><img src="images/a3.jpg" alt="Automotive photo 3" loading="lazy" decoding="async"></div>
+      <div class="frame"><span class="badge">04</span><img src="images/a4.jpg" alt="Automotive photo 4" loading="lazy" decoding="async"></div>
+
+      <div class="frame"><span class="badge">05</span><img src="images/5.jpg" alt="Automotive photo 5" loading="lazy" decoding="async"></div>
+      <div class="frame"><span class="badge">06</span><img src="images/6.jpg" alt="Automotive photo 6" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>
@@ -266,12 +288,7 @@ footer{
   <div class="cta">
     <h2>Ready to Shoot?</h2>
     <p class="sub">Reach out and let’s create something clean and cinematic.</p>
-
-    <!-- CHANGE THIS to your real email or website -->
-    <a href="mailto:egskraw@gmail.com">Contact Me</a>
-    <!-- Example website redirect:
-    <a href="https://egskraw.studio">Contact Me</a>
-    -->
+    <a href="mailto:Inquiries@egskraw.studio">Contact Me</a>
   </div>
 </section>
 
@@ -285,54 +302,28 @@ footer{
 </div>
 
 <script>
-  const imgs = document.querySelectorAll('.carousel img');
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
 
-  // Lightbox
-  imgs.forEach(img=>{
+  document.querySelectorAll('#carousel img').forEach(img=>{
     img.addEventListener('click', ()=>{
-      if(!img || !img.src) return;
       lbImg.src = img.src;
       lightbox.style.display = 'flex';
       lightbox.setAttribute('aria-hidden','false');
     });
+
+    img.addEventListener('error', ()=>{
+      const frame = img.closest('.frame');
+      if(frame) frame.classList.add('broken');
+      // show you which file failed in the console
+      console.warn('Image failed to load:', img.getAttribute('src'));
+    }, { once:true });
   });
+
   lightbox.addEventListener('click', ()=>{
     lightbox.style.display = 'none';
     lightbox.setAttribute('aria-hidden','true');
     lbImg.src = '';
-  });
-
-  // Auto-fix common extension mismatches (jpg/JPG/jpeg) if an image fails
-  // This helps when files are renamed or exported weirdly.
-  const tryExtensions = (imgEl, originalSrc) => {
-    const base = originalSrc.replace(/\.(jpg|jpeg|png|webp)$/i,'');
-    const tries = [base + '.jpg', base + '.JPG', base + '.jpeg', base + '.JPEG', base + '.png', base + '.webp'];
-    let i = 0;
-
-    const tryNext = () => {
-      i++;
-      if(i >= tries.length){
-        imgEl.classList.add('is-broken');
-        return;
-      }
-      imgEl.src = tries[i];
-    };
-
-    const handler = () => tryNext();
-    imgEl.addEventListener('error', handler, { once:true });
-
-    // start the first alternative try
-    imgEl.src = tries[1];
-  };
-
-  imgs.forEach(img=>{
-    img.addEventListener('error', ()=>{
-      // If 5/6 work but 1-4 fail, this will usually fix it automatically.
-      const original = img.getAttribute('src');
-      tryExtensions(img, original);
-    }, { once:true });
   });
 </script>
 
