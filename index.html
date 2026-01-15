@@ -29,6 +29,7 @@
   --border:rgba(255,255,255,.08);
   --border2:rgba(255,255,255,.12);
   --shadow: 0 18px 60px rgba(0,0,0,.45);
+  --glow: 0 0 24px rgba(255,255,255,.18);
 }
 
 *{box-sizing:border-box}
@@ -56,8 +57,7 @@ body::before{
 /* ---------- SCROLL PROGRESS ---------- */
 #scroll-progress{
   position:fixed;
-  top:0;
-  left:0;
+  top:0; left:0;
   height:2px;
   width:0%;
   background:rgba(255,255,255,.85);
@@ -93,13 +93,13 @@ nav{
 .brand-dot{
   width:8px;height:8px;border-radius:999px;
   background:rgba(255,255,255,.75);
-  box-shadow:0 0 24px rgba(255,255,255,.18);
+  box-shadow:var(--glow);
 }
 nav a{
   color:var(--text);
   text-decoration:none;
   font-size:14px;
-  margin-left:28px;
+  margin-left:26px;
   opacity:.85;
   position:relative;
 }
@@ -128,30 +128,27 @@ header{
   z-index:5;
   overflow:hidden;
 }
-
-/* Replace images/hero.jpg with your best photo */
+/* hero background */
 header::before{
   content:'';
   position:absolute;
   inset:-40px;
   background:
     radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,.08), transparent 60%),
-    linear-gradient(180deg, rgba(11,11,14,.72), rgba(11,11,14,.88)),
+    linear-gradient(180deg, rgba(11,11,14,.55), rgba(11,11,14,.88)),
     url("images/hero.jpg");
   background-size:cover;
   background-position:center;
   filter:blur(8px);
   transform:scale(1.08);
-  opacity:.85;
+  opacity:.88;
 }
-
 header::after{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(11,11,14,.35), rgba(11,11,14,.94));
+  background:linear-gradient(180deg, rgba(11,11,14,.20), rgba(11,11,14,.94));
 }
-
 .hero{
   max-width:980px;
   position:relative;
@@ -177,7 +174,7 @@ header h1{
   letter-spacing:.2px;
 }
 header p{
-  max-width:720px;
+  max-width:740px;
   margin:0 auto 28px;
   font-size:18px;
   color:rgba(245,245,247,.82);
@@ -213,6 +210,15 @@ header p{
 }
 .btn.primary:hover{ filter:brightness(.98); }
 
+/* --- surprise: tiny shimmer line under hero --- */
+.hero-shimmer{
+  margin:34px auto 0;
+  width:min(640px, 86vw);
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+  opacity:.75;
+}
+
 /* ---------- SECTIONS ---------- */
 section{
   max-width:1200px;
@@ -228,7 +234,7 @@ h2{
 }
 .sub{
   color:var(--muted);
-  max-width:760px;
+  max-width:820px;
   margin:0 0 40px;
   line-height:1.6;
 }
@@ -255,6 +261,40 @@ h2{
   background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
   box-shadow:var(--shadow);
 }
+.carousel-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  margin-bottom:10px;
+  flex-wrap:wrap;
+}
+.filters{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.fbtn{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:rgba(255,255,255,.78);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.fbtn:hover{ background:rgba(255,255,255,.06); transform:translateY(-1px); }
+.fbtn.active{
+  background:#fff;
+  color:#000;
+  border-color:#fff;
+}
+.carousel-meta{
+  color:rgba(255,255,255,.55);
+  font-size:13px;
+}
+
 .carousel{
   display:flex;
   gap:18px;
@@ -308,6 +348,33 @@ h2{
   backdrop-filter:blur(6px);
 }
 
+/* --- surprise: “VIEW” cursor label on images --- */
+.view-cursor{
+  position:fixed;
+  z-index:1000;
+  pointer-events:none;
+  transform:translate(-50%, -50%);
+  opacity:0;
+  transition:opacity .18s ease, transform .18s ease;
+}
+.view-cursor span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(8px);
+  color:rgba(255,255,255,.9);
+  font-size:12px;
+  letter-spacing:.2px;
+}
+.view-cursor.show{
+  opacity:1;
+  transform:translate(-50%, -50%) scale(1);
+}
+
 /* ---------- AVAILABLE FOR (PILLS) ---------- */
 .pills{
   display:flex;
@@ -326,6 +393,91 @@ h2{
 .pill:hover{
   transform:translateY(-1px);
   background:rgba(255,255,255,.06);
+}
+
+/* ---------- DELIVERABLES ---------- */
+.grid-2{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:18px;
+  align-items:start;
+}
+.deliver{
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+  box-shadow:var(--shadow);
+}
+.list{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:12px;
+}
+.li{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.02);
+}
+.tick{
+  width:22px;height:22px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;
+  background:rgba(255,255,255,.04);
+  flex:0 0 auto;
+  margin-top:2px;
+}
+.li b{ font-weight:600; color:rgba(255,255,255,.92); }
+.li span{ color:rgba(255,255,255,.60); font-size:13px; line-height:1.5; }
+
+/* ---------- BOOK A SHOOT (MAILTO FORM) ---------- */
+.form{
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:24px;
+  background:rgba(255,255,255,.02);
+}
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-bottom:12px;
+}
+label{
+  font-size:13px;
+  color:rgba(255,255,255,.70);
+}
+input, select, textarea{
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text);
+  border-radius:14px;
+  padding:12px 12px;
+  outline:none;
+  font-family:inherit;
+}
+textarea{ min-height:110px; resize:vertical; }
+input:focus, select:focus, textarea:focus{
+  border-color:rgba(255,255,255,.28);
+}
+.form-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.small-note{
+  margin-top:10px;
+  color:rgba(255,255,255,.52);
+  font-size:12px;
+  line-height:1.5;
 }
 
 /* ---------- PROCESS ---------- */
@@ -361,6 +513,84 @@ h2{
   color:var(--muted);
   line-height:1.65;
   font-size:14px;
+}
+
+/* ---------- BEFORE/AFTER SLIDER ---------- */
+.ba{
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+  box-shadow:var(--shadow);
+}
+.ba-stage{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  background:var(--panel2);
+  aspect-ratio: 16 / 9;
+}
+.ba-stage img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  user-select:none;
+  pointer-events:none;
+}
+.ba-after{
+  clip-path:inset(0 0 0 50%);
+}
+.ba-handle{
+  position:absolute;
+  top:0; bottom:0;
+  left:50%;
+  width:2px;
+  background:rgba(255,255,255,.72);
+  box-shadow:0 0 18px rgba(255,255,255,.14);
+}
+.ba-knob{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:44px;height:44px;
+  border-radius:999px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:18px;
+}
+.ba-labels{
+  position:absolute;
+  top:12px;
+  left:12px;
+  right:12px;
+  display:flex;
+  justify-content:space-between;
+  pointer-events:none;
+}
+.ba-pill{
+  font-size:12px;
+  color:rgba(255,255,255,.86);
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.25);
+  backdrop-filter:blur(8px);
+}
+.ba-range{
+  margin-top:14px;
+  width:100%;
+}
+input[type="range"]{
+  width:100%;
+  accent-color:#ffffff;
 }
 
 /* ---------- TESTIMONIALS ---------- */
@@ -423,6 +653,33 @@ h2{
 .pricing p{
   margin:0;
   color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* ---------- FAQ ---------- */
+.faq{
+  border:1px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+  box-shadow:var(--shadow);
+}
+details{
+  padding:18px 20px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+details:first-child{ border-top:none; }
+summary{
+  cursor:pointer;
+  list-style:none;
+  font-weight:600;
+  color:rgba(255,255,255,.90);
+}
+summary::-webkit-details-marker{ display:none; }
+details p{
+  margin:12px 0 0;
+  color:rgba(255,255,255,.62);
   line-height:1.7;
   font-size:14px;
 }
@@ -629,8 +886,9 @@ footer{
 }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width: 920px){
+@media (max-width: 980px){
   .grid-3{ grid-template-columns:1fr; }
+  .grid-2{ grid-template-columns:1fr; }
   .quote{ min-width:320px; }
   .nav-inner{ padding:16px 22px; }
   .lb-meta{ max-width:100%; }
@@ -651,8 +909,10 @@ footer{
     <div>
       <a href="#highlights">Highlights</a>
       <a href="#available">Available</a>
-      <a href="#process">Process</a>
-      <a href="#testimonials">Testimonials</a>
+      <a href="#deliverables">Deliverables</a>
+      <a href="#edit">Before/After</a>
+      <a href="#book">Book</a>
+      <a href="#faq">FAQ</a>
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </div>
@@ -675,21 +935,57 @@ footer{
       <a class="btn" href="mailto:Inquiries@egskraw.studio">Inquiries@egskraw.studio</a>
       <a class="btn" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">Instagram @egsk.raw</a>
     </div>
+
+    <div class="hero-shimmer"></div>
   </div>
 </header>
 
 <section id="highlights" class="reveal">
   <h2>Highlights</h2>
-  <p class="sub">Click an image to view full screen. Use arrows (or swipe) to navigate.</p>
+  <p class="sub">Click an image to view full screen. Use arrows (or swipe) to navigate. Filter by type.</p>
 
   <div class="carousel-wrap reveal delay-1">
+    <div class="carousel-top">
+      <div class="filters" id="filters">
+        <button class="fbtn active" data-filter="all">All</button>
+        <button class="fbtn" data-filter="night">Night</button>
+        <button class="fbtn" data-filter="rollers">Rollers</button>
+        <button class="fbtn" data-filter="details">Details</button>
+      </div>
+      <div class="carousel-meta" id="visibleCount">Showing 6</div>
+    </div>
+
     <div class="carousel" id="carousel">
-      <div class="frame"><span class="badge">01</span><img src="images/a1.jpg" alt="Highlight 01" loading="lazy" decoding="async"></div>
-      <div class="frame"><span class="badge">02</span><img src="images/a2.jpg" alt="Highlight 02" loading="lazy" decoding="async"></div>
-      <div class="frame"><span class="badge">03</span><img src="images/a3.jpg" alt="Highlight 03" loading="lazy" decoding="async"></div>
-      <div class="frame"><span class="badge">04</span><img src="images/a4.jpg" alt="Highlight 04" loading="lazy" decoding="async"></div>
-      <div class="frame"><span class="badge">05</span><img src="images/5.jpg"  alt="Highlight 05" loading="lazy" decoding="async"></div>
-      <div class="frame"><span class="badge">06</span><img src="images/6.jpg"  alt="Highlight 06" loading="lazy" decoding="async"></div>
+      <!-- Add data-category values for filtering (space-separated allowed) -->
+      <div class="frame" data-category="night">
+        <span class="badge">01</span>
+        <img src="images/a1.jpg" alt="Highlight 01" loading="lazy" decoding="async">
+      </div>
+
+      <div class="frame" data-category="details">
+        <span class="badge">02</span>
+        <img src="images/a2.jpg" alt="Highlight 02" loading="lazy" decoding="async">
+      </div>
+
+      <div class="frame" data-category="night">
+        <span class="badge">03</span>
+        <img src="images/a3.jpg" alt="Highlight 03" loading="lazy" decoding="async">
+      </div>
+
+      <div class="frame" data-category="night details">
+        <span class="badge">04</span>
+        <img src="images/a4.jpg" alt="Highlight 04" loading="lazy" decoding="async">
+      </div>
+
+      <div class="frame" data-category="rollers">
+        <span class="badge">05</span>
+        <img src="images/5.jpg" alt="Highlight 05" loading="lazy" decoding="async">
+      </div>
+
+      <div class="frame" data-category="details">
+        <span class="badge">06</span>
+        <img src="images/6.jpg" alt="Highlight 06" loading="lazy" decoding="async">
+      </div>
     </div>
   </div>
 
@@ -709,6 +1005,58 @@ footer{
     <div class="pill">Detail / Close-Ups</div>
     <div class="pill">Social Media Content</div>
     <div class="pill">Brand / Promo</div>
+  </div>
+</section>
+
+<section id="deliverables" class="reveal">
+  <h2>Deliverables</h2>
+  <p class="sub">Clear expectations. Clean delivery. This is what you’re getting.</p>
+
+  <div class="grid-2">
+    <div class="deliver reveal delay-1">
+      <ul class="list">
+        <li class="li">
+          <div class="tick">✓</div>
+          <div>
+            <b>High-res + web-ready</b><br>
+            <span>Delivered in both full quality and optimized sizes for Instagram.</span>
+          </div>
+        </li>
+
+        <li class="li">
+          <div class="tick">✓</div>
+          <div>
+            <b>Cinematic color grade</b><br>
+            <span>Consistent tone, controlled highlights, and clean skin/bodywork texture.</span>
+          </div>
+        </li>
+
+        <li class="li">
+          <div class="tick">✓</div>
+          <div>
+            <b>Fast turnaround</b><br>
+            <span>Typical delivery is within 48–72 hours (depends on the project).</span>
+          </div>
+        </li>
+
+        <li class="li">
+          <div class="tick">✓</div>
+          <div>
+            <b>Optional add-ons</b><br>
+            <span>Rollers, extra locations, and short social clips on request.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="form reveal delay-2">
+      <h3 style="margin:0 0 12px;font-size:18px;font-weight:600;">Quick Contact</h3>
+      <p style="margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.6;">
+        Don’t overthink it — send your car + vibe and I’ll reply with a plan.
+      </p>
+      <a class="btn primary" href="#book">Book a Shoot</a>
+      <a class="btn" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">DM on Instagram</a>
+    </div>
   </div>
 </section>
 
@@ -734,6 +1082,27 @@ footer{
       <h3>Precision Editing</h3>
       <p>Clean color, controlled highlights, and detail-first finishing — optimized for web & high-res delivery.</p>
     </div>
+  </div>
+</section>
+
+<section id="edit" class="reveal">
+  <h2>Before / After</h2>
+  <p class="sub">One example — the same frame before grading and after finishing. Drag the slider.</p>
+
+  <div class="ba reveal delay-1">
+    <div class="ba-stage" id="baStage">
+      <!-- Replace these with your own images -->
+      <img src="images/before.jpg" alt="Before edit">
+      <img class="ba-after" id="baAfter" src="images/after.jpg" alt="After edit">
+      <div class="ba-labels">
+        <div class="ba-pill">Before</div>
+        <div class="ba-pill">After</div>
+      </div>
+      <div class="ba-handle" id="baHandle"></div>
+      <div class="ba-knob" id="baKnob">↔</div>
+    </div>
+
+    <input class="ba-range" id="baRange" type="range" min="0" max="100" value="50" aria-label="Before/After slider">
   </div>
 </section>
 
@@ -765,6 +1134,93 @@ footer{
         <span>Client</span>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="book" class="reveal">
+  <h2>Book a Shoot</h2>
+  <p class="sub">Fill this out and it’ll open an email with everything formatted — easy.</p>
+
+  <div class="grid-2">
+    <div class="form reveal delay-1">
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" placeholder="Your name" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="car">Car</label>
+        <input id="car" placeholder="e.g., 2007 Hawkeye Impreza">
+      </div>
+
+      <div class="field">
+        <label for="type">Shoot Type</label>
+        <select id="type">
+          <option>Night Shoot</option>
+          <option>Street / Static</option>
+          <option>Rollers</option>
+          <option>Details / Close-ups</option>
+          <option>Feature Set</option>
+          <option>Brand / Promo</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="date">Preferred Date</label>
+        <input id="date" placeholder="e.g., Friday evening / Jan 25">
+      </div>
+
+      <div class="field">
+        <label for="notes">Notes</label>
+        <textarea id="notes" placeholder="Location ideas, vibe (cinematic / clean), deliverables needed, etc."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" id="sendEmail" type="button">Send Inquiry</button>
+        <a class="btn" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">DM @egsk.raw</a>
+      </div>
+
+      <div class="small-note">
+        Surprise tip: if you mention <b>“rollers”</b> and your preferred route/time, the planning is faster.
+      </div>
+    </div>
+
+    <div class="deliver reveal delay-2">
+      <h3 style="margin:0 0 10px;font-size:18px;font-weight:600;">What to send</h3>
+      <p style="margin:0 0 14px;color:var(--muted);line-height:1.7;font-size:14px;">
+        The best shoots happen when the vision is clear. This helps me plan fast:
+      </p>
+      <ul class="list">
+        <li class="li"><div class="tick">✓</div><div><b>Car + color</b><br><span>Helps plan angles and lighting.</span></div></li>
+        <li class="li"><div class="tick">✓</div><div><b>Vibe</b><br><span>Clean / cinematic / aggressive / moody.</span></div></li>
+        <li class="li"><div class="tick">✓</div><div><b>Location</b><br><span>Doha streets / industrial / parking / skyline.</span></div></li>
+        <li class="li"><div class="tick">✓</div><div><b>Deliverables</b><br><span>Instagram set, high-res, rollers, etc.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="reveal">
+  <h2>FAQ</h2>
+  <p class="sub">Quick answers so you don’t have to ask twice.</p>
+
+  <div class="faq reveal delay-1">
+    <details>
+      <summary>How do I book?</summary>
+      <p>Use the Book a Shoot form (opens a formatted email), or DM me on Instagram @egsk.raw.</p>
+    </details>
+    <details>
+      <summary>Do you shoot rollers?</summary>
+      <p>Yes — rollers are available. Tell me your preferred route/time and whether you want cinematic or clean style.</p>
+    </details>
+    <details>
+      <summary>How fast is delivery?</summary>
+      <p>Typical delivery is 48–72 hours depending on the project size and add-ons.</p>
+    </details>
+    <details>
+      <summary>Do you travel within Qatar?</summary>
+      <p>Yes. Doha is easy — for farther locations, we’ll plan around timing and the shoot concept.</p>
+    </details>
   </div>
 </section>
 
@@ -822,6 +1278,9 @@ footer{
   </div>
 </div>
 
+<!-- Surprise: view cursor label -->
+<div class="view-cursor" id="viewCursor"><span id="viewCursorText">VIEW</span></div>
+
 <script>
 /* -------------------------
    Scroll reveal
@@ -853,9 +1312,91 @@ footer{
 })();
 
 /* -------------------------
+   Highlights filtering
+-------------------------- */
+(() => {
+  const buttons = Array.from(document.querySelectorAll('.fbtn'));
+  const frames = Array.from(document.querySelectorAll('#carousel .frame'));
+  const count = document.getElementById('visibleCount');
+
+  const apply = (filter) => {
+    let shown = 0;
+    frames.forEach(f => {
+      const cats = (f.dataset.category || '').split(/\s+/).filter(Boolean);
+      const ok = filter === 'all' || cats.includes(filter);
+      f.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    count.textContent = `Showing ${shown}`;
+  };
+
+  buttons.forEach(b => {
+    b.addEventListener('click', () => {
+      buttons.forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      apply(b.dataset.filter);
+    });
+  });
+
+  apply('all');
+})();
+
+/* -------------------------
+   Before/After slider
+-------------------------- */
+(() => {
+  const range = document.getElementById('baRange');
+  const after = document.getElementById('baAfter');
+  const handle = document.getElementById('baHandle');
+  const knob = document.getElementById('baKnob');
+
+  const set = (v) => {
+    const pct = Math.max(0, Math.min(100, Number(v)));
+    after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    handle.style.left = pct + '%';
+    knob.style.left = pct + '%';
+  };
+
+  if(range && after && handle && knob){
+    set(range.value);
+    range.addEventListener('input', e => set(e.target.value));
+  }
+})();
+
+/* -------------------------
+   Book a shoot mailto builder
+-------------------------- */
+(() => {
+  const btn = document.getElementById('sendEmail');
+  if(!btn) return;
+
+  btn.addEventListener('click', () => {
+    const name = document.getElementById('name').value.trim();
+    const car = document.getElementById('car').value.trim();
+    const type = document.getElementById('type').value;
+    const date = document.getElementById('date').value.trim();
+    const notes = document.getElementById('notes').value.trim();
+
+    const subject = encodeURIComponent(`Shoot inquiry — ${car || "Car"} (${type})`);
+    const body = encodeURIComponent(
+`Name: ${name || "-"}
+Car: ${car || "-"}
+Shoot type: ${type || "-"}
+Preferred date/time: ${date || "-"}
+Notes:
+${notes || "-"}\n\n— Sent from egskraw.studio`
+    );
+
+    window.location.href = `mailto:Inquiries@egskraw.studio?subject=${subject}&body=${body}`;
+  });
+})();
+
+/* -------------------------
    Lightbox (arrows + counter + metadata + keyboard + swipe)
 -------------------------- */
-const thumbs = Array.from(document.querySelectorAll('#carousel img'));
+const thumbs = Array.from(document.querySelectorAll('#carousel img'))
+  .filter(img => img.closest('.frame') && img.closest('.frame').style.display !== 'none');
+
 const lightbox = document.getElementById('lightbox');
 const lbImg = document.getElementById('lightbox-img');
 const lbCounter = document.getElementById('lbCounter');
@@ -868,7 +1409,7 @@ const lbTitle = document.getElementById('lbTitle');
 const lbSub = document.getElementById('lbSub');
 const lbTags = document.getElementById('lbTags');
 
-/* EDIT THESE: metadata for each image (in order) */
+/* EDIT THESE: metadata for each image (match carousel order) */
 const meta = [
   { title: "Night Feature", sub: "Doha, Qatar", tags:["Cinematic","Street","Low Light"] },
   { title: "Detail Study", sub: "Doha, Qatar", tags:["Details","Contrast","Clean Lines"] },
@@ -879,6 +1420,13 @@ const meta = [
 ];
 
 let current = 0;
+
+function getVisibleThumbs(){
+  return Array.from(document.querySelectorAll('#carousel .frame'))
+    .filter(f => f.style.display !== 'none')
+    .map(f => f.querySelector('img'))
+    .filter(Boolean);
+}
 
 function renderMeta(){
   const m = meta[current] || { title:"—", sub:"", tags:[] };
@@ -892,53 +1440,58 @@ function renderMeta(){
     lbTags.appendChild(el);
   });
 }
-
-function updateCounter(){
-  lbCounter.textContent = `${current + 1} / ${thumbs.length}`;
+function updateCounter(vs){
+  lbCounter.textContent = `${current + 1} / ${vs.length}`;
 }
-
 function openLightbox(index){
-  current = index;
-  lbImg.src = thumbs[current].src;
-  updateCounter();
+  const vs = getVisibleThumbs();
+  current = Math.max(0, Math.min(vs.length - 1, index));
+  lbImg.src = vs[current].src;
+  updateCounter(vs);
   renderMeta();
   lightbox.style.display = 'flex';
   lightbox.setAttribute('aria-hidden','false');
   document.body.style.overflow = 'hidden';
 }
-
 function closeLightbox(){
   lightbox.style.display = 'none';
   lightbox.setAttribute('aria-hidden','true');
   lbImg.src = '';
   document.body.style.overflow = '';
 }
-
 function nextImg(){
-  current = (current + 1) % thumbs.length;
-  lbImg.src = thumbs[current].src;
-  updateCounter();
+  const vs = getVisibleThumbs();
+  current = (current + 1) % vs.length;
+  lbImg.src = vs[current].src;
+  updateCounter(vs);
   renderMeta();
 }
-
 function prevImg(){
-  current = (current - 1 + thumbs.length) % thumbs.length;
-  lbImg.src = thumbs[current].src;
-  updateCounter();
+  const vs = getVisibleThumbs();
+  current = (current - 1 + vs.length) % vs.length;
+  lbImg.src = vs[current].src;
+  updateCounter(vs);
   renderMeta();
 }
 
-thumbs.forEach((img, i) => img.addEventListener('click', () => openLightbox(i)));
+document.querySelectorAll('#carousel .frame').forEach((frame, i) => {
+  const img = frame.querySelector('img');
+  if(!img) return;
+  img.addEventListener('click', () => {
+    // compute index among visible items
+    const vs = getVisibleThumbs();
+    const idx = vs.indexOf(img);
+    openLightbox(idx === -1 ? 0 : idx);
+  });
+});
 
 lbNext.addEventListener('click', (e) => { e.stopPropagation(); nextImg(); });
 lbPrev.addEventListener('click', (e) => { e.stopPropagation(); prevImg(); });
 lbClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
 
-// click outside closes
 lightbox.addEventListener('click', () => closeLightbox());
 lbInner.addEventListener('click', (e) => e.stopPropagation());
 
-// keyboard
 document.addEventListener('keydown', (e) => {
   if (lightbox.style.display !== 'flex') return;
   if (e.key === 'ArrowRight') nextImg();
@@ -948,7 +1501,6 @@ document.addEventListener('keydown', (e) => {
 
 // swipe
 let startX = 0, startY = 0, moved = false;
-
 lbInner.addEventListener('touchstart', (e) => {
   const t = e.touches[0];
   startX = t.clientX;
@@ -968,6 +1520,36 @@ lbInner.addEventListener('touchend', (e) => {
     else prevImg();
   }
 }, { passive:true });
+
+/* -------------------------
+   Surprise: VIEW cursor label on images
+-------------------------- */
+(() => {
+  const c = document.getElementById('viewCursor');
+  const t = document.getElementById('viewCursorText');
+  const targets = document.querySelectorAll('#carousel img');
+
+  const move = (e) => {
+    c.style.left = e.clientX + 'px';
+    c.style.top = e.clientY + 'px';
+  };
+
+  targets.forEach(img => {
+    img.addEventListener('mouseenter', () => { t.textContent = 'VIEW'; c.classList.add('show'); });
+    img.addEventListener('mouseleave', () => { c.classList.remove('show'); });
+    img.addEventListener('mousemove', move);
+  });
+
+  // Lightbox arrows: show NEXT/PREV label when hovering buttons
+  const set = (txt) => { t.textContent = txt; c.classList.add('show'); };
+  const hide = () => c.classList.remove('show');
+
+  [lbNext, lbPrev].forEach(btn => {
+    btn.addEventListener('mouseenter', (e) => set(btn === lbNext ? 'NEXT' : 'PREV'));
+    btn.addEventListener('mousemove', move);
+    btn.addEventListener('mouseleave', hide);
+  });
+})();
 </script>
 
 </body>
