@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>egsk.raw — Automotive Photography, Qatar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="description" content="Cinematic automotive photography by Ebo. Based in Qatar."/>
+<meta name="theme-color" content="#080809"/>
+<link rel="icon" href="favicon.png"/>
+<link rel="stylesheet" href="shared.css"/>
+<style>
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-media{position:absolute;inset:0;z-index:0;}
+.hero-media img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.05);transition:transform 10s ease;filter:brightness(.35) saturate(.8);}
+.hero:hover .hero-media img{transform:scale(1.0);}
+.hero-fog{position:absolute;inset:0;z-index:1;background:linear-gradient(to top,var(--ink) 0%,rgba(8,8,9,.55) 42%,transparent 72%),linear-gradient(105deg,rgba(8,8,9,.5) 0%,transparent 55%);}
+.hero-content{position:relative;z-index:5;max-width:1440px;margin:auto;padding:0 32px calc(96px + var(--sb));width:100%;}
+.hero-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;opacity:0;transform:translateX(-12px);animation:heroIn .9s cubic-bezier(.16,1,.3,1) 2.3s forwards;}
+.hero-eyebrow-rule{width:36px;height:1px;background:var(--gold);border-radius:999px;}
+.hero-eyebrow-text{font-family:var(--f-mono);font-size:10px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;}
+.hero h1{font-family:var(--f-display);font-size:clamp(54px,9.5vw,120px);font-weight:300;line-height:.92;letter-spacing:-.015em;color:var(--text);max-width:900px;opacity:0;transform:translateY(28px);animation:heroIn 1.1s cubic-bezier(.16,1,.3,1) 2.45s forwards;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{max-width:420px;margin-top:26px;font-size:14px;color:var(--text-3);line-height:1.85;letter-spacing:.03em;opacity:0;transform:translateY(16px);animation:heroIn .8s cubic-bezier(.16,1,.3,1) 2.65s forwards;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;opacity:0;transform:translateY(14px);animation:heroIn .8s cubic-bezier(.16,1,.3,1) 2.8s forwards;}
+@keyframes heroIn{to{opacity:1;transform:none;}}
+.hero-scroll-hint{position:absolute;bottom:36px;right:32px;z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:heroIn .8s ease 3s forwards;}
+.hero-scroll-hint span{font-family:var(--f-mono);font-size:8px;letter-spacing:.32em;color:var(--text-4);writing-mode:vertical-rl;text-transform:uppercase;}
+.hero-scroll-hint i{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);border-radius:999px;animation:lpulse 2.2s ease-in-out 3.2s infinite;}
+@keyframes lpulse{0%,100%{opacity:.6;transform:scaleY(1);}50%{opacity:.25;transform:scaleY(.55);}}
+.stats-band{background:var(--ink-1);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);}
+.stats-grid{max-width:1440px;margin:auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--b1);}
+.stat{padding:44px 36px;border-right:1px solid var(--b1);position:relative;}
+.stat::after{content:'';position:absolute;bottom:0;left:36px;width:24px;height:1.5px;background:var(--gold);border-radius:999px;opacity:0;transition:opacity .4s,width .4s;}
+.stat:hover::after{opacity:1;width:48px;}
+.stat-n{font-family:var(--f-display);font-size:clamp(40px,5.5vw,72px);font-weight:300;line-height:1;color:var(--text);letter-spacing:-.02em;}
+.stat-n sup{font-size:.4em;vertical-align:top;margin-top:.35em;color:var(--gold);letter-spacing:0;}
+.stat-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--text-4);text-transform:uppercase;margin-top:8px;}
+.work-header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:52px;}
+.work-grid{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:14px;}
+.work-item{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--ink-2);cursor:pointer;}
+.work-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1),filter .5s ease;filter:brightness(.88) saturate(.88);}
+.work-item:hover img{transform:scale(1.05);filter:brightness(1) saturate(1);}
+.work-item-1{grid-row:span 2;aspect-ratio:3/4;}
+.work-item-2{aspect-ratio:16/10;}
+.work-item-3{aspect-ratio:16/10;}
+.work-caption{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,9,.9) 0%,transparent 55%);opacity:0;transition:opacity .35s ease;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;}
+.work-item:hover .work-caption{opacity:1;}
+.work-caption-title{font-family:var(--f-display);font-size:22px;font-weight:400;color:var(--text);}
+.work-caption-sub{font-family:var(--f-mono);font-size:9px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-top:5px;}
+.work-num{position:absolute;top:18px;left:18px;font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;color:var(--text-4);padding:6px 10px;border-radius:var(--r-xs);background:rgba(8,8,9,.45);backdrop-filter:blur(8px);border:1px solid var(--b1);}
+.approach-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;}
+.approach-card{padding:40px 32px;border-radius:var(--r-lg);border:1px solid var(--b1);background:var(--ink-1);transition:background .3s,border-color .3s,transform .3s;}
+.approach-card:hover{background:var(--ink-2);border-color:var(--b2);transform:translateY(-3px);box-shadow:var(--sh-md);}
+.approach-n{font-family:var(--f-display);font-size:64px;font-weight:300;color:var(--text-4);line-height:1;margin-bottom:24px;}
+.approach-card h3{font-family:var(--f-ui);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text);margin-bottom:12px;}
+.approach-card p{font-size:13px;color:var(--text-3);line-height:1.85;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px;}
+.service-card{padding:32px 26px;border-radius:var(--r-lg);border:1px solid var(--b1);background:var(--ink-1);transition:background .3s,border-color .3s,transform .3s;cursor:default;}
+.service-card:hover{background:var(--ink-2);border-color:var(--b2);transform:translateY(-2px);}
+.service-n{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+.service-card h3{font-size:14px;font-weight:600;letter-spacing:.05em;color:var(--text);margin-bottom:10px;}
+.service-card p{font-size:12px;color:var(--text-3);line-height:1.8;}
+.ba-wrap{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);box-shadow:var(--sh-lg);}
+.ba-stage{position:relative;aspect-ratio:16/9;cursor:ew-resize;touch-action:none;overflow:hidden;}
+.ba-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none;}
+#baAfter{clip-path:inset(0 0 0 50%);}
+.ba-handle{position:absolute;top:0;bottom:0;left:50%;width:1.5px;background:rgba(242,240,235,.7);z-index:10;}
+.ba-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(242,240,235,.28);background:rgba(8,8,9,.55);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;color:var(--text);font-size:16px;z-index:11;cursor:ew-resize;}
+.ba-labels{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;pointer-events:none;z-index:12;}
+.ba-tag{font-family:var(--f-mono);font-size:9px;letter-spacing:.24em;color:var(--text-3);text-transform:uppercase;padding:7px 14px;border-radius:var(--r-xs);border:1px solid var(--b2);background:rgba(8,8,9,.5);backdrop-filter:blur(8px);}
+.ba-footer{padding:20px 28px;border-top:1px solid var(--b1);display:flex;align-items:center;gap:16px;}
+.ba-slider{flex:1;accent-color:var(--gold);cursor:pointer;}
+.deliver-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:52px;align-items:start;}
+.deliver-list{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);}
+.deliver-item{display:flex;gap:20px;align-items:flex-start;padding:26px 30px;border-bottom:1px solid var(--b1);transition:background .25s;}
+.deliver-item:last-child{border-bottom:none;}
+.deliver-item:hover{background:var(--ink-2);}
+.deliver-dot{width:22px;height:22px;border-radius:50%;border:1px solid var(--b2);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-family:var(--f-mono);font-size:9px;color:var(--gold);}
+.deliver-item b{display:block;font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--text);margin-bottom:4px;}
+.deliver-item span{font-size:12px;color:var(--text-3);line-height:1.75;}
+.contact-sidebar{border-radius:var(--r-xl);padding:40px 32px;border:1px solid var(--b1);background:var(--ink-1);display:flex;flex-direction:column;gap:20px;}
+.contact-sidebar h3{font-family:var(--f-display);font-size:30px;font-weight:300;}
+.contact-sidebar p{font-size:13px;color:var(--text-3);line-height:1.8;}
+.btn-stack{display:flex;flex-direction:column;gap:10px;}
+.quotes-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-top:52px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent;}
+.quote-card{min-width:min(400px,88vw);padding:36px 32px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);scroll-snap-align:start;display:flex;flex-direction:column;gap:20px;transition:border-color .3s,background .3s;}
+.quote-card:hover{border-color:var(--b2);background:var(--ink-2);}
+.quote-mark{font-family:var(--f-display);font-size:52px;line-height:.8;color:var(--gold);opacity:.35;font-weight:300;}
+.quote-text{font-family:var(--f-display);font-size:21px;font-weight:300;color:var(--text-2);line-height:1.5;font-style:italic;flex:1;}
+.quote-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.quote-car{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;padding:6px 12px;border:1px solid var(--gold-dim);border-radius:var(--r-xs);background:var(--gold-glow);}
+.quote-who{font-size:11px;color:var(--text-4);letter-spacing:.06em;}
+.cta-strip{background:var(--ink-1);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);}
+.cta-inner{max-width:1440px;margin:auto;padding:100px 32px;display:flex;justify-content:space-between;align-items:center;gap:48px;flex-wrap:wrap;}
+.cta-h{font-family:var(--f-display);font-size:clamp(42px,6vw,78px);font-weight:300;line-height:1.0;}
+.cta-h em{font-style:italic;color:var(--gold);}
+.cta-sub{margin-top:12px;font-size:13px;color:var(--text-3);max-width:360px;line-height:1.8;}
+.cta-right{display:flex;flex-direction:column;gap:12px;}
+.social-chips{display:flex;gap:8px;flex-wrap:wrap;}
+.social-chip{font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;color:var(--text-3);text-decoration:none;padding:9px 15px;border:1px solid var(--b1);border-radius:var(--r-sm);text-transform:uppercase;transition:color .2s,border-color .2s,background .2s;}
+.social-chip:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--gold-glow);}
+@media(max-width:960px){.work-grid{grid-template-columns:1fr 1fr;}.work-item-1{grid-row:1;grid-column:span 2;aspect-ratio:16/9;}.approach-row{grid-template-columns:1fr;}.services-grid{grid-template-columns:repeat(2,1fr);}.deliver-grid{grid-template-columns:1fr;}.stats-grid{grid-template-columns:repeat(2,1fr);}.cta-inner{flex-direction:column;align-items:flex-start;}}
+@media(max-width:580px){.services-grid{grid-template-columns:1fr;}.work-grid{grid-template-columns:1fr;}.work-item-1{grid-column:1;aspect-ratio:3/4;}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="loader-wordmark"><span style="animation-delay:.05s">e</span><span style="animation-delay:.12s">g</span><span style="animation-delay:.19s">s</span><span style="animation-delay:.26s">k</span><span style="animation-delay:.33s">.</span><span style="animation-delay:.40s">r</span><span style="animation-delay:.47s">a</span><span style="animation-delay:.54s">w</span></div>
+  <div class="loader-rule"></div>
+  <div class="loader-label">Automotive Photography · Qatar</div>
+</div>
+<div id="progress"></div>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><div class="nav-brand-mark"><span></span></div><div><div class="nav-brand-name">egsk.raw</div><div class="nav-brand-sub">Photography</div></div></a>
+    <div class="nav-links">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="ipc.html">IPC</a>
+      <a href="ipc-awards.html">Awards</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta"><a class="btn btn-solid btn-sm" href="contact.html">Book a Shoot</a></div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-media"><img src="images/hero.jpg" alt="Hero automotive photograph"></div>
+  <div class="hero-fog"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><div class="hero-eyebrow-rule"></div><span class="hero-eyebrow-text">Automotive Photography · Qatar</span></div>
+    <h1>Automotive<br>photography<br><em>with intent.</em></h1>
+    <p class="hero-sub">Precision. Light. Motion. Cinematic work built to feel like a feature — not a snapshot.</p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="portfolio.html">View Portfolio</a>
+      <a class="btn btn-ghost" href="contact.html">Book a Session</a>
+      <a class="btn" href="ipc.html">IPC Council</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint"><span>scroll</span><i></i></div>
+</section>
+
+<div class="stats-band"><div class="stats-grid reveal">
+  <div class="stat"><div class="stat-n"><sup>+</sup>60</div><div class="stat-label">Shoots Completed</div></div>
+  <div class="stat"><div class="stat-n"><sup>+</sup>5</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat"><div class="stat-n"><sup>+</sup>40</div><div class="stat-label">Cars Photographed</div></div>
+  <div class="stat"><div class="stat-n"><sup>+</sup>30</div><div class="stat-label">Satisfied Clients</div></div>
+</div></div>
+
+<div class="section"><div class="section-inner">
+  <div class="work-header reveal">
+    <div><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Selected Work</span></div><h2 class="h2">Recent <span class="em">sessions.</span></h2></div>
+    <a class="btn" href="portfolio.html">Full Portfolio →</a>
+  </div>
+  <div class="work-grid">
+    <div class="work-item work-item-1 reveal"><span class="work-num">01</span><img src="images/a1.jpg" alt="Shot 01" loading="lazy"><div class="work-caption"><div class="work-caption-title">Front Three-Quarter</div><div class="work-caption-sub">Street · Day</div></div></div>
+    <div class="work-item work-item-2 reveal d1"><span class="work-num">02</span><img src="images/a2.jpg" alt="Shot 02" loading="lazy"><div class="work-caption"><div class="work-caption-title">Side Detail + Light</div><div class="work-caption-sub">Details · Warm</div></div></div>
+    <div class="work-item work-item-3 reveal d2"><span class="work-num">03</span><img src="images/5.jpg" alt="Shot 03" loading="lazy"><div class="work-caption"><div class="work-caption-title">Badge Detail</div><div class="work-caption-sub">Detail · Close-up</div></div></div>
+  </div>
+</div></div>
+
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">The Process</span></div><h2 class="h2">Every shot is <span class="em">intentional.</span></h2></div>
+  <div class="approach-row">
+    <div class="approach-card reveal d1"><div class="approach-n">01</div><h3>Plan & Location</h3><p>Align on the vibe, find a location that fits the car's character, and build a shot list so nothing is left to chance.</p></div>
+    <div class="approach-card reveal d2"><div class="approach-n">02</div><h3>Shoot With Intent</h3><p>Angles that respect the design language. Lighting that sculpts body lines. Motion when it adds narrative weight.</p></div>
+    <div class="approach-card reveal d3"><div class="approach-n">03</div><h3>Precision Editing</h3><p>Controlled highlights, clean colour grading, and detail-first finishing — optimised for web and high-res print.</p></div>
+  </div>
+</div></div>
+
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Services</span></div><h2 class="h2">Available <span class="em">for.</span></h2></div>
+  <div class="services-grid">
+    <div class="service-card reveal"><div class="service-n">01</div><h3>Street Builds</h3><p>Static and creative location work. Cars shot in context, not a car park.</p></div>
+    <div class="service-card reveal d1"><div class="service-n">02</div><h3>Night Shoots</h3><p>Long exposures, ambient light, city texture. Moody and cinematic.</p></div>
+    <div class="service-card reveal d2"><div class="service-n">03</div><h3>Rollers</h3><p>Car-to-car and panning shots that communicate speed without losing quality.</p></div>
+    <div class="service-card reveal d3"><div class="service-n">04</div><h3>Feature Sets</h3><p>Full editorial-style sets — wide shots through to tight detail work.</p></div>
+    <div class="service-card reveal"><div class="service-n">05</div><h3>Detail / Close-Ups</h3><p>Badges, wheels, stitching, interiors — the parts that tell the car's story.</p></div>
+    <div class="service-card reveal d1"><div class="service-n">06</div><h3>Social Content</h3><p>Instagram-optimised sets with web-ready delivery. Post the same day.</p></div>
+    <div class="service-card reveal d2"><div class="service-n">07</div><h3>Brand / Promo</h3><p>Commercial work for dealerships, workshops, and automotive brands.</p></div>
+    <div class="service-card reveal d3"><div class="service-n">08</div><h3>Multi-Location</h3><p>One session across multiple Doha locations for maximum variety.</p></div>
+  </div>
+</div></div>
+
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Post-Production</span></div><h2 class="h2">Before <span class="em">/ After.</span></h2><p class="body-sm" style="margin-top:12px;max-width:460px">Drag the handle or use the slider to compare raw capture vs. finished edit.</p></div>
+  <div style="margin-top:40px" class="reveal d1">
+    <div class="ba-wrap"><div class="ba-stage" id="baStage"><img src="images/before.jpg" alt="Before"><img id="baAfter" src="images/after.jpg" alt="After"><div class="ba-labels"><div class="ba-tag">Before</div><div class="ba-tag">After</div></div><div class="ba-handle" id="baHandle"></div><div class="ba-knob" id="baKnob">↔</div></div><div class="ba-footer"><span class="mono-label" style="flex-shrink:0">Compare</span><input class="ba-slider" id="baRange" type="range" min="0" max="100" value="50"></div></div>
+  </div>
+</div></div>
+
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">What You Get</span></div><h2 class="h2">Clear <span class="em">deliverables.</span></h2></div>
+  <div class="deliver-grid">
+    <div class="deliver-list reveal d1">
+      <div class="deliver-item"><div class="deliver-dot">✦</div><div><b>High-res + web-ready</b><span>Full quality and Instagram-optimised sizes delivered together.</span></div></div>
+      <div class="deliver-item"><div class="deliver-dot">✦</div><div><b>Cinematic colour grade</b><span>Consistent tone, controlled highlights, clean texture matched to your car's character.</span></div></div>
+      <div class="deliver-item"><div class="deliver-dot">✦</div><div><b>1–2 week turnaround</b><span>Typical delivery within 1–2 business weeks depending on scope.</span></div></div>
+      <div class="deliver-item"><div class="deliver-dot">✦</div><div><b>Optional add-ons</b><span>Rollers, extra locations, BTS material available on request.</span></div></div>
+    </div>
+    <div class="contact-sidebar reveal d2">
+      <h3>Ready to plan?</h3>
+      <p>Tell me your car, your vibe, and what you need delivered. I'll come back with a plan fast.</p>
+      <div class="btn-stack">
+        <a class="btn btn-solid" href="contact.html">Book a Shoot</a>
+        <a class="btn btn-ghost" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">DM on Instagram</a>
+        <a class="btn" href="mailto:Inquiries@egskraw.studio">Send an Email</a>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Client Feedback</span></div><h2 class="h2">What <span class="em">clients say.</span></h2></div>
+  <div class="quotes-track reveal d1">
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">Easily the best photos I've had of my car.</div><div class="quote-meta"><span class="quote-car">Mini Cooper SE</span><span class="quote-who">Client</span></div></div>
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">I told him to surprise me — and he delivered.</div><div class="quote-meta"><span class="quote-car">2007 Hawkeye Impreza</span><span class="quote-who">Client</span></div></div>
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">Clean, professional, and the edits were exactly the vibe.</div><div class="quote-meta"><span class="quote-car">Performance Build</span><span class="quote-who">Client</span></div></div>
+  </div>
+</div></div>
+
+<div class="cta-strip"><div class="cta-inner reveal">
+  <div><h2 class="cta-h">Ready<br>to <em>shoot?</em></h2><p class="cta-sub">Let's plan something that does your build justice.</p></div>
+  <div class="cta-right">
+    <a class="btn btn-solid" href="contact.html">Get in Touch</a>
+    <div class="social-chips">
+      <a class="social-chip" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">Instagram</a>
+      <a class="social-chip" href="mailto:Inquiries@egskraw.studio">Email</a>
+      <a class="social-chip" href="ipc.html">IPC</a>
+    </div>
+  </div>
+</div></div>
+
+<footer class="site-footer"><div class="site-footer-inner">
+  <div class="footer-brand">egsk.raw</div>
+  <div class="footer-links"><a href="portfolio.html">Portfolio</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a></div>
+  <div class="footer-copy">© 2026 · All rights reserved · Qatar</div>
+</div></footer>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),2100));
+window.addEventListener('scroll',()=>{const d=document.documentElement,p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;document.getElementById('progress').style.width=p+'%';document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);},{passive:true});
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')}),{threshold:.1}).observe(el));
+(()=>{const stage=document.getElementById('baStage'),range=document.getElementById('baRange'),after=document.getElementById('baAfter'),handle=document.getElementById('baHandle'),knob=document.getElementById('baKnob');if(!stage)return;const cl=(n,a,b)=>Math.max(a,Math.min(b,n));const set=p=>{const v=cl(p,0,100);after.style.clipPath=`inset(0 0 0 ${v}%)`;handle.style.left=knob.style.left=v+'%';range.value=v;};set(50);range.addEventListener('input',e=>set(+e.target.value));let d=false;const fx=x=>((cl(x-stage.getBoundingClientRect().left,0,stage.getBoundingClientRect().width))/stage.getBoundingClientRect().width)*100;stage.addEventListener('pointerdown',e=>{d=true;stage.setPointerCapture(e.pointerId);set(fx(e.clientX));});stage.addEventListener('pointermove',e=>{if(d)set(fx(e.clientX));});window.addEventListener('pointerup',()=>d=false);})();
+</script>
+</body>
+</html>

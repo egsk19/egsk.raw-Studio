@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><title>Contact & Book — egsk.raw</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<link rel="icon" href="favicon.png"/><link rel="stylesheet" href="shared.css"/>
+<style>
+.contact-hero{padding:calc(150px + var(--st)) 32px 80px;max-width:1440px;margin:auto;}
+.contact-hero p{font-size:15px;color:var(--text-3);line-height:1.85;margin-top:16px;max-width:500px;}
+/* Channel cards */
+.channels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px;}
+.channel{padding:36px 30px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);display:flex;flex-direction:column;gap:16px;transition:border-color .3s,background .3s,transform .3s;}
+.channel:hover{border-color:var(--b2);background:var(--ink-2);transform:translateY(-3px);box-shadow:var(--sh-md);}
+.channel-icon{width:44px;height:44px;border-radius:var(--r-md);border:1px solid var(--b2);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;font-size:18px;}
+.channel h3{font-size:15px;font-weight:600;letter-spacing:.05em;color:var(--text);}
+.channel p{font-size:13px;color:var(--text-3);line-height:1.75;flex:1;}
+.channel a{color:var(--gold);text-decoration:none;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;transition:opacity .2s;}
+.channel a:hover{opacity:.75;}
+/* Main form area */
+.form-area{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;margin-top:56px;align-items:start;}
+.form-card{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);}
+.form-header{padding:32px 32px 0;border-bottom:none;}
+.form-header h2{font-family:var(--f-display);font-size:32px;font-weight:300;}
+.form-header p{font-size:13px;color:var(--text-3);margin-top:8px;line-height:1.75;}
+.form-body{padding:28px 32px;}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.field label{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--text-3);text-transform:uppercase;}
+.field input,.field select,.field textarea{background:var(--ink-2);border:1px solid var(--b1);color:var(--text);border-radius:var(--r-md);padding:13px 16px;font-family:var(--f-ui);font-size:14px;outline:none;transition:border-color .25s;width:100%;}
+.field input:focus,.field select,.field textarea:focus{border-color:var(--b2);}
+.field textarea{min-height:110px;resize:vertical;}
+.field select{appearance:none;cursor:pointer;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-footer{padding:20px 32px 28px;display:flex;gap:10px;flex-wrap:wrap;}
+.form-note{padding:16px 32px 28px;font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;color:var(--text-4);border-top:1px solid var(--b1);margin-top:8px;}
+.form-note b{color:var(--gold);font-weight:400;}
+/* Info sidebar */
+.info-sidebar{display:flex;flex-direction:column;gap:14px;}
+.info-box{border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);overflow:hidden;}
+.info-box-head{padding:22px 26px;border-bottom:1px solid var(--b1);}
+.info-box-head h3{font-family:var(--f-display);font-size:22px;font-weight:300;}
+.info-box-head p{font-size:12px;color:var(--text-3);margin-top:6px;line-height:1.7;}
+.info-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:15px 26px;border-bottom:1px solid var(--b1);transition:background .2s;}
+.info-row:last-child{border-bottom:none;}
+.info-row:hover{background:var(--ink-2);}
+.info-row-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;color:var(--text-4);text-transform:uppercase;padding-top:2px;}
+.info-row-val{font-size:12px;color:var(--text);text-align:right;}
+/* FAQ */
+.faq-wrap{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);margin-top:56px;}
+details{border-bottom:1px solid var(--b1);}
+details:last-child{border-bottom:none;}
+summary{list-style:none;padding:20px 28px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.04em;color:var(--text-2);display:flex;justify-content:space-between;align-items:center;transition:color .2s,background .2s;user-select:none;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:'+';font-family:var(--f-display);font-size:22px;font-weight:300;color:var(--gold);transition:transform .3s;flex-shrink:0;}
+details[open] summary::after{transform:rotate(45deg);}
+details[open] summary{color:var(--text);background:var(--ink-2);}
+details p{padding:0 28px 20px;font-size:13px;color:var(--text-3);line-height:1.85;background:var(--ink-2);}
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:56px;}
+.pricing-card{padding:40px 32px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);transition:border-color .3s,background .3s;}
+.pricing-card:hover{border-color:var(--b2);background:var(--ink-2);}
+.pricing-card h3{font-family:var(--f-display);font-size:26px;font-weight:300;margin-bottom:12px;}
+.pricing-card p{font-size:13px;color:var(--text-3);line-height:1.8;}
+@media(max-width:960px){.channels{grid-template-columns:1fr 1fr;}.form-area{grid-template-columns:1fr;}.pricing-grid{grid-template-columns:1fr;}}
+@media(max-width:580px){.channels{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.contact-hero{padding:calc(120px + var(--st)) 16px 60px;}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="loader-wordmark"><span style="animation-delay:.05s">C</span><span style="animation-delay:.12s">o</span><span style="animation-delay:.19s">n</span><span style="animation-delay:.26s">t</span><span style="animation-delay:.33s">a</span><span style="animation-delay:.40s">c</span><span style="animation-delay:.47s">t</span></div>
+  <div class="loader-rule"></div>
+  <div class="loader-label">egsk.raw · Get in Touch</div>
+</div>
+<div id="progress"></div>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><div class="nav-brand-mark"><span></span></div><div><div class="nav-brand-name">egsk.raw</div><div class="nav-brand-sub">Photography</div></div></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="portfolio.html">Portfolio</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html" aria-current="page">Contact</a>
+    </div>
+    <div class="nav-cta"><a class="btn btn-solid btn-sm" href="#book">Book a Shoot</a></div>
+  </div>
+</nav>
+
+<div class="contact-hero reveal">
+  <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Get in Touch</span></div>
+  <h1 class="h1">Let's <span class="em">talk.</span></h1>
+  <p>For shoot bookings, IPC enquiries, collaboration proposals, or anything else — pick the channel that suits you.</p>
+</div>
+
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="channels">
+    <div class="channel reveal">
+      <div class="channel-icon">📸</div>
+      <h3>Book a Shoot</h3>
+      <p>For automotive sessions, portraits, commercial work, or rollers. Use the form below or email directly.</p>
+      <a href="#book">Use the booking form ↓</a>
+    </div>
+    <div class="channel reveal d1">
+      <div class="channel-icon">📷</div>
+      <h3>Instagram</h3>
+      <p>The fastest response for informal inquiries, quick questions, or if you want to see recent work before committing.</p>
+      <a href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">@egsk.raw ↗</a>
+    </div>
+    <div class="channel reveal d2">
+      <div class="channel-icon">🏛</div>
+      <h3>IPC Enquiries</h3>
+      <p>Membership applications, workshop bookings, and awards submissions. Handled via the IPC pages or email.</p>
+      <a href="ipc.html">IPC Council →</a>
+    </div>
+  </div>
+</div></div>
+
+<!-- BOOK FORM -->
+<div class="section" style="padding-top:0" id="book"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Book a Session</span></div>
+    <h2 class="h2">Plan your <span class="em">shoot.</span></h2>
+  </div>
+  <div class="form-area">
+    <div class="form-card reveal d1">
+      <div class="form-header">
+        <h2>Shoot Inquiry</h2>
+        <p>Fills in an email to send directly. The more detail you give, the faster I can come back with a plan.</p>
+      </div>
+      <div class="form-body">
+        <div class="form-row">
+          <div class="field"><label>Name</label><input id="fname" placeholder="Your name" autocomplete="name"></div>
+          <div class="field"><label>Car</label><input id="fcar" placeholder="e.g. 2007 Hawkeye Impreza"></div>
+        </div>
+        <div class="field"><label>Shoot Type</label>
+          <select id="ftype"><option>Night Shoot</option><option>Street / Static</option><option>Rollers</option><option>Details / Close-ups</option><option>Feature Set</option><option>Brand / Promo</option><option>Portrait</option><option>Other</option></select>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Preferred Date</label><input id="fdate" placeholder="e.g. Friday evening"></div>
+          <div class="field"><label>Location Idea</label><input id="floc" placeholder="e.g. Industrial zone, corniche"></div>
+        </div>
+        <div class="field"><label>Vibe / Reference</label><input id="fvibe" placeholder="Cinematic / clean / moody / aggressive..."></div>
+        <div class="field"><label>Notes & Deliverables</label><textarea id="fnotes" placeholder="What do you need? Instagram set, high-res, rollers, BTS..."></textarea></div>
+      </div>
+      <div class="form-footer">
+        <button class="btn btn-solid" id="sendBtn" type="button">Send Inquiry</button>
+        <a class="btn btn-ghost" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">DM on Instagram</a>
+      </div>
+      <div class="form-note">Tip: mentioning <b>rollers</b> + preferred route/time makes planning faster. Mention the <b>vibe</b> — a saved Instagram post works too.</div>
+    </div>
+    <div class="info-sidebar">
+      <div class="info-box reveal d2">
+        <div class="info-box-head"><h3>What to include</h3><p>The best shoots happen when the vision is clear before we even meet.</p></div>
+        <div class="info-row"><span class="info-row-label">Car + colour</span><span class="info-row-val">Helps plan angles & lighting</span></div>
+        <div class="info-row"><span class="info-row-label">Vibe reference</span><span class="info-row-val">A saved post works fine</span></div>
+        <div class="info-row"><span class="info-row-label">Location</span><span class="info-row-val">Or open to suggestions</span></div>
+        <div class="info-row"><span class="info-row-label">Deliverables</span><span class="info-row-val">IG set / high-res / rollers</span></div>
+        <div class="info-row"><span class="info-row-label">Turnaround</span><span class="info-row-val">1–2 business weeks</span></div>
+        <div class="info-row"><span class="info-row-label">Location coverage</span><span class="info-row-val">Doha + surrounding areas</span></div>
+      </div>
+      <div class="info-box reveal d3">
+        <div class="info-box-head"><h3>Direct contact</h3></div>
+        <div class="info-row"><span class="info-row-label">Email</span><span class="info-row-val"><a href="mailto:Inquiries@egskraw.studio" style="color:var(--gold);text-decoration:none;">Inquiries@egskraw.studio</a></span></div>
+        <div class="info-row"><span class="info-row-label">Instagram</span><span class="info-row-val"><a href="https://instagram.com/egsk.raw" target="_blank" style="color:var(--gold);text-decoration:none;">@egsk.raw</a></span></div>
+        <div class="info-row"><span class="info-row-label">Based</span><span class="info-row-val">Doha, Qatar</span></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- PRICING -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Pricing</span></div>
+    <h2 class="h2">Tailored to <span class="em">the project.</span></h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal d1">
+      <h3>Every build is different. Every quote is too.</h3>
+      <p>No flat-rate packages — pricing is built around the type of shoot, number of locations, add-ons, and deliverables required. Tell me your car and what you need. I'll come back with a clear, honest number.</p>
+    </div>
+    <div class="pricing-card reveal d2">
+      <h3>No hidden fees. No surprises.</h3>
+      <p>When we agree on a price, that's the price. Add-ons like rollers or extra locations are scoped separately and quoted upfront before we commit to anything.</p>
+    </div>
+  </div>
+</div></div>
+
+<!-- FAQ -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">FAQ</span></div>
+    <h2 class="h2">Quick <span class="em">answers.</span></h2>
+  </div>
+  <div class="faq-wrap reveal d1">
+    <details><summary>How do I book a shoot?</summary><p>Use the form above — it opens a formatted email with everything I need. Or DM on Instagram @egsk.raw. Both work, both get a fast reply.</p></details>
+    <details><summary>Do you shoot rollers?</summary><p>Yes. Rollers are available as an add-on. Tell me your preferred route, time of day, and the style you're after and I'll plan around it.</p></details>
+    <details><summary>How fast is turnaround?</summary><p>Typically 1–2 business weeks depending on scope. I'll always confirm the expected delivery timeline before we shoot.</p></details>
+    <details><summary>Do you travel within Qatar?</summary><p>Doha and surrounding areas are easy. For farther locations we'll factor travel into the plan and pricing.</p></details>
+    <details><summary>What file formats are delivered?</summary><p>Full-resolution JPEGs for print and archiving plus web-optimised versions sized for Instagram. RAW files available as an add-on.</p></details>
+    <details><summary>Can I use the images commercially?</summary><p>Usage rights are included for personal and social media. Commercial licensing for brands and dealerships is quoted separately — ask when you book.</p></details>
+  </div>
+</div></div>
+
+<footer class="site-footer"><div class="site-footer-inner">
+  <div class="footer-brand">egsk.raw</div>
+  <div class="footer-links"><a href="portfolio.html">Portfolio</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a></div>
+  <div class="footer-copy">© 2026 · All rights reserved · Qatar</div>
+</div></footer>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),2000));
+window.addEventListener('scroll',()=>{const d=document.documentElement,p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')}),{threshold:.1}).observe(el));
+document.getElementById('sendBtn').addEventListener('click',()=>{
+  const g=id=>document.getElementById(id).value.trim();
+  const subject=encodeURIComponent(`Shoot inquiry — ${g('fcar')||'Car'} (${document.getElementById('ftype').value})`);
+  const body=encodeURIComponent(`Name: ${g('fname')||'-'}\nCar: ${g('fcar')||'-'}\nShoot type: ${document.getElementById('ftype').value}\nDate: ${g('fdate')||'-'}\nLocation: ${g('floc')||'-'}\nVibe: ${g('fvibe')||'-'}\nNotes:\n${g('fnotes')||'-'}\n\n— Sent from egskraw.studio`);
+  window.location.href=`mailto:Inquiries@egskraw.studio?subject=${subject}&body=${body}`;
+});
+</script>
+</body>
+</html>

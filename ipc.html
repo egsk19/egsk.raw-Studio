@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><title>International Photographers Council — IPC</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="description" content="The International Photographers Council — recognising, connecting, and advancing photographers worldwide."/>
+<link rel="icon" href="favicon.png"/><link rel="stylesheet" href="shared.css"/>
+<style>
+/* IPC uses a warmer, more authoritative palette — amber gold on deep slate */
+:root{
+  --ipc-bg:   #09090c;
+  --ipc-1:    #0e0e12;
+  --ipc-2:    #131318;
+  --ipc-3:    #181820;
+  --ipc-g:    #d4a85c;
+  --ipc-gd:   rgba(212,168,92,.16);
+  --ipc-gg:   rgba(212,168,92,.06);
+  --ipc-b1:   rgba(212,168,92,.08);
+  --ipc-b2:   rgba(212,168,92,.16);
+}
+body{background:var(--ipc-bg);}
+/* Override shared gold tones for IPC */
+.eyebrow-rule{background:var(--ipc-g)!important;}
+.eyebrow-text{color:var(--ipc-g)!important;}
+.em{color:var(--ipc-g)!important;}
+
+/* IPC HERO */
+.ipc-hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:calc(100px + var(--st)) 32px calc(80px + var(--sb));}
+.ipc-hero-bg{position:absolute;inset:0;z-index:0;}
+/* Concentric ring decoration */
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(212,168,92,.07);}
+.ring-1{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ring-2{width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ring-3{width:1200px;height:1200px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.ring-4{width:1600px;height:1600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+/* Radial glow */
+.ipc-hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(212,168,92,.06) 0%, transparent 70%);}
+.ipc-hero-content{position:relative;z-index:5;max-width:860px;}
+/* IPC crest */
+.ipc-crest{width:72px;height:72px;border-radius:50%;border:1px solid var(--ipc-b2);background:var(--ipc-gg);display:flex;align-items:center;justify-content:center;margin:0 auto 32px;position:relative;}
+.ipc-crest::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--ipc-b1);}
+.ipc-crest-inner{font-family:var(--f-display);font-size:22px;font-weight:400;color:var(--ipc-g);letter-spacing:.1em;}
+.ipc-tag{font-family:var(--f-mono);font-size:9px;letter-spacing:.35em;color:var(--ipc-g);text-transform:uppercase;margin-bottom:20px;opacity:0;animation:fadeUp .8s ease 2.3s forwards;}
+.ipc-hero h1{font-family:var(--f-display);font-size:clamp(42px,7vw,88px);font-weight:300;line-height:.95;letter-spacing:.02em;color:var(--text);opacity:0;animation:fadeUp 1s cubic-bezier(.16,1,.3,1) 2.45s forwards;}
+.ipc-hero h1 em{font-style:italic;color:var(--ipc-g);}
+.ipc-hero-sub{font-size:15px;color:var(--text-3);line-height:1.8;max-width:560px;margin:24px auto 0;opacity:0;animation:fadeUp .8s ease 2.6s forwards;}
+.ipc-hero-acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px;opacity:0;animation:fadeUp .8s ease 2.75s forwards;}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}from{opacity:0;transform:translateY(18px);}}
+/* Override btn gold for IPC */
+.btn-ipc{background:var(--ipc-g);color:var(--ipc-bg);border-color:var(--ipc-g);font-family:var(--f-ui);font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
+.btn-ipc:hover{background:#e0ba70;border-color:#e0ba70;color:var(--ipc-bg);transform:translateY(-1px);}
+
+/* MISSION */
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:52px;align-items:center;}
+.mission-text-col{}
+.mission-text-col p{font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:16px;}
+.mission-visual{border-radius:var(--r-xl);overflow:hidden;background:var(--ipc-1);border:1px solid var(--ipc-b1);aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;}
+.mission-visual-inner{text-align:center;}
+.mission-vis-num{font-family:var(--f-display);font-size:120px;font-weight:300;color:rgba(212,168,92,.12);line-height:1;}
+.mission-vis-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--ipc-g);text-transform:uppercase;margin-top:-12px;}
+.mission-visual-deco{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(212,168,92,.04) 0%, transparent 70%);}
+
+/* PILLARS */
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;}
+.pillar{padding:40px 32px;border-radius:var(--r-xl);border:1px solid var(--ipc-b1);background:var(--ipc-1);transition:border-color .3s,background .3s,transform .3s;}
+.pillar:hover{border-color:var(--ipc-b2);background:var(--ipc-2);transform:translateY(-3px);box-shadow:var(--sh-md);}
+.pillar-icon{width:44px;height:44px;border-radius:var(--r-md);border:1px solid var(--ipc-b2);background:var(--ipc-gg);display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-family:var(--f-mono);font-size:16px;color:var(--ipc-g);}
+.pillar h3{font-size:15px;font-weight:600;letter-spacing:.06em;color:var(--text);margin-bottom:12px;}
+.pillar p{font-size:13px;color:var(--text-3);line-height:1.85;}
+
+/* MEMBERSHIP TIERS */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;}
+.tier{padding:40px 32px;border-radius:var(--r-xl);border:1px solid var(--ipc-b1);background:var(--ipc-1);display:flex;flex-direction:column;gap:16px;transition:transform .3s,box-shadow .3s;}
+.tier.featured{border-color:var(--ipc-g);background:var(--ipc-2);position:relative;overflow:hidden;}
+.tier.featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,168,92,.07) 0%, transparent 65%);}
+.tier-badge{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--ipc-g);text-transform:uppercase;}
+.tier-name{font-family:var(--f-display);font-size:32px;font-weight:300;color:var(--text);}
+.tier-desc{font-size:13px;color:var(--text-3);line-height:1.8;flex:1;}
+.tier-perks{display:flex;flex-direction:column;gap:10px;}
+.tier-perk{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--text-3);line-height:1.6;}
+.tier-perk-dot{width:16px;height:16px;border-radius:50%;border:1px solid var(--ipc-b2);background:var(--ipc-gg);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:7px;color:var(--ipc-g);margin-top:1px;}
+
+/* WORKSHOPS */
+.workshops{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-top:52px;scrollbar-width:thin;scrollbar-color:var(--ipc-b1) transparent;}
+.ws-card{min-width:min(340px,88vw);border-radius:var(--r-xl);border:1px solid var(--ipc-b1);background:var(--ipc-1);scroll-snap-align:start;overflow:hidden;transition:border-color .3s,transform .3s;}
+.ws-card:hover{border-color:var(--ipc-b2);transform:translateY(-2px);}
+.ws-thumb{aspect-ratio:16/9;background:var(--ipc-2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.ws-thumb-placeholder{font-family:var(--f-display);font-size:48px;font-weight:300;color:rgba(212,168,92,.18);}
+.ws-thumb-deco{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--ipc-1) 100%);}
+.ws-body{padding:24px 26px;}
+.ws-tag{font-family:var(--f-mono);font-size:9px;letter-spacing:.24em;color:var(--ipc-g);text-transform:uppercase;margin-bottom:10px;}
+.ws-title{font-family:var(--f-display);font-size:22px;font-weight:300;color:var(--text);margin-bottom:10px;}
+.ws-desc{font-size:12px;color:var(--text-3);line-height:1.8;margin-bottom:16px;}
+.ws-meta{display:flex;gap:10px;flex-wrap:wrap;}
+.ws-meta-pill{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:var(--text-4);padding:5px 10px;border:1px solid var(--ipc-b1);border-radius:var(--r-xs);text-transform:uppercase;}
+
+/* IPC CTA */
+.ipc-cta{background:var(--ipc-1);border-top:1px solid var(--ipc-b1);border-bottom:1px solid var(--ipc-b1);}
+.ipc-cta-inner{max-width:1440px;margin:auto;padding:100px 32px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ipc-cta h2{font-family:var(--f-display);font-size:clamp(36px,5vw,64px);font-weight:300;line-height:1.05;}
+.ipc-cta h2 em{font-style:italic;color:var(--ipc-g);}
+.ipc-cta p{font-size:14px;color:var(--text-3);line-height:1.85;margin-top:16px;}
+.ipc-cta-right{display:flex;flex-direction:column;gap:14px;}
+.ipc-form{display:flex;flex-direction:column;gap:12px;}
+.ipc-input{background:var(--ipc-2);border:1px solid var(--ipc-b1);color:var(--text);border-radius:var(--r-md);padding:13px 16px;font-family:var(--f-ui);font-size:14px;outline:none;transition:border-color .2s;width:100%;}
+.ipc-input:focus{border-color:var(--ipc-b2);}
+.ipc-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+@media(max-width:960px){.mission-grid{grid-template-columns:1fr;}.pillars-grid{grid-template-columns:1fr;}.tiers{grid-template-columns:1fr;}.ipc-cta-inner{grid-template-columns:1fr;gap:48px;}}
+@media(max-width:580px){.ipc-hero{padding:calc(120px + var(--st)) 16px 70px;}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="loader-wordmark" style="letter-spacing:.35em"><span style="animation-delay:.05s">I</span><span style="animation-delay:.12s">P</span><span style="animation-delay:.19s">C</span></div>
+  <div class="loader-rule"></div>
+  <div class="loader-label">International Photographers Council</div>
+</div>
+<div id="progress"></div>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><div class="nav-brand-mark"><span></span></div><div><div class="nav-brand-name">egsk.raw</div><div class="nav-brand-sub">Photography</div></div></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="portfolio.html">Portfolio</a><a href="ipc.html" aria-current="page">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta"><a class="btn btn-ipc btn-sm" href="#apply">Join IPC</a></div>
+  </div>
+</nav>
+
+<!-- IPC HERO -->
+<section class="ipc-hero">
+  <div class="ipc-hero-bg">
+    <div class="ring ring-1"></div><div class="ring ring-2"></div><div class="ring ring-3"></div><div class="ring ring-4"></div>
+  </div>
+  <div class="ipc-hero-content">
+    <div class="ipc-crest"><div class="ipc-crest-inner">IPC</div></div>
+    <div class="ipc-tag">Est. Qatar · International</div>
+    <h1>International<br><em>Photographers</em><br>Council</h1>
+    <p class="ipc-hero-sub">Recognising excellence. Building community. Advancing the art and profession of photography — worldwide.</p>
+    <div class="ipc-hero-acts">
+      <a class="btn btn-ipc" href="#apply">Apply for Membership</a>
+      <a class="btn" href="ipc-awards.html">View Awards →</a>
+      <a class="btn" href="#workshops">Workshops</a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<div class="section"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Who We Are</span></div>
+    <h2 class="h2">A council built by <span class="em">photographers,</span><br>for photographers.</h2>
+  </div>
+  <div class="mission-grid">
+    <div class="mission-text-col reveal d1">
+      <p>The International Photographers Council was founded with a single purpose: to create a body that takes photography seriously — one that recognises genuine talent, connects professionals across borders, and gives the craft the institutional weight it deserves.</p>
+      <p>Based in Qatar and operating internationally, the IPC runs recognition programmes, hands-on workshops, and curated exhibitions. We work with photographers at every stage — from emerging talent to established professionals seeking broader recognition.</p>
+      <p>Membership isn't just a title. It's a signal — to clients, to peers, and to the industry — that your work meets a standard worth acknowledging.</p>
+      <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="btn btn-ipc" href="#apply">Join the Council</a>
+        <a class="btn" href="ipc-awards.html">Awards Programme</a>
+      </div>
+    </div>
+    <div class="mission-visual reveal d2">
+      <div class="mission-visual-deco"></div>
+      <div class="mission-visual-inner">
+        <div class="mission-vis-num">IPC</div>
+        <div class="mission-vis-label">International Photographers Council</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- PILLARS -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">What We Do</span></div>
+    <h2 class="h2">Three pillars of the <span class="em">council.</span></h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar reveal d1">
+      <div class="pillar-icon">◈</div>
+      <h3>Recognition</h3>
+      <p>An annual awards programme that identifies and celebrates work across portrait, automotive, landscape, documentary, and commercial photography. Judged by industry professionals.</p>
+    </div>
+    <div class="pillar reveal d2">
+      <div class="pillar-icon">◎</div>
+      <h3>Education</h3>
+      <p>Workshops, masterclasses, and critique sessions led by working photographers. From fundamentals to advanced post-production — practical skills that translate to real results.</p>
+    </div>
+    <div class="pillar reveal d3">
+      <div class="pillar-icon">⬡</div>
+      <h3>Community</h3>
+      <p>A network of verified photographers, shared resources, and collaborative opportunities. The people you want in your corner when a client brief needs a second opinion.</p>
+    </div>
+  </div>
+</div></div>
+
+<!-- MEMBERSHIP TIERS -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Membership</span></div>
+    <h2 class="h2">Choose your <span class="em">tier.</span></h2>
+    <p class="body-sm" style="margin-top:12px;max-width:500px">Every tier comes with access to the IPC community. Higher tiers unlock awards eligibility, critique sessions, and direct mentorship.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier reveal d1">
+      <div class="tier-badge">Associate</div>
+      <div class="tier-name">Associate<br>Member</div>
+      <p class="tier-desc">For emerging photographers building their practice. Access to workshops, community resources, and the IPC network.</p>
+      <div class="tier-perks">
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>IPC Member certificate</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Workshop access (standard)</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Community forum & resources</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Monthly critique thread</div>
+      </div>
+      <a class="btn" href="#apply" style="margin-top:8px">Apply →</a>
+    </div>
+    <div class="tier featured reveal d2">
+      <div class="tier-badge">Most Popular</div>
+      <div class="tier-name">Full<br>Member</div>
+      <p class="tier-desc">For active professionals. Full awards eligibility, priority workshop spots, and a verified profile on the IPC directory.</p>
+      <div class="tier-perks">
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Everything in Associate</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Awards programme eligibility</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Verified IPC directory listing</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Priority workshop booking</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Bi-monthly 1-on-1 critique</div>
+      </div>
+      <a class="btn btn-ipc" href="#apply" style="margin-top:8px">Apply →</a>
+    </div>
+    <div class="tier reveal d3">
+      <div class="tier-badge">Fellow</div>
+      <div class="tier-name">Fellow of<br>the IPC</div>
+      <p class="tier-desc">By nomination only. Awarded to photographers who have demonstrated sustained excellence and contribution to the field.</p>
+      <div class="tier-perks">
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Everything in Full Member</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>FIPC post-nominal credential</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Juror eligibility for awards</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Mentorship programme access</div>
+        <div class="tier-perk"><div class="tier-perk-dot">✦</div>Annual exhibition inclusion</div>
+      </div>
+      <a class="btn" href="#apply" style="margin-top:8px">Request Nomination →</a>
+    </div>
+  </div>
+</div></div>
+
+<!-- WORKSHOPS -->
+<div class="section" style="padding-top:0" id="workshops"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Upcoming Sessions</span></div>
+    <h2 class="h2">Workshops & <span class="em">masterclasses.</span></h2>
+  </div>
+  <div class="workshops reveal d1">
+    <div class="ws-card">
+      <div class="ws-thumb"><div class="ws-thumb-placeholder">Ap</div><div class="ws-thumb-deco"></div></div>
+      <div class="ws-body"><div class="ws-tag">Automotive</div><div class="ws-title">Shooting Cars at Night</div><div class="ws-desc">Long exposures, light painting, and location scouting for after-dark automotive sessions in Doha.</div><div class="ws-meta"><span class="ws-meta-pill">Doha</span><span class="ws-meta-pill">6 spots left</span><span class="ws-meta-pill">Half-day</span></div></div>
+    </div>
+    <div class="ws-card">
+      <div class="ws-thumb"><div class="ws-thumb-placeholder">Pt</div><div class="ws-thumb-deco"></div></div>
+      <div class="ws-body"><div class="ws-tag">Portrait</div><div class="ws-title">Natural Light Portraiture</div><div class="ws-desc">Reading and shaping available light for environmental portrait work. Theory, practical, and live critique.</div><div class="ws-meta"><span class="ws-meta-pill">Doha</span><span class="ws-meta-pill">8 spots</span><span class="ws-meta-pill">Full day</span></div></div>
+    </div>
+    <div class="ws-card">
+      <div class="ws-thumb"><div class="ws-thumb-placeholder">Ed</div><div class="ws-thumb-deco"></div></div>
+      <div class="ws-body"><div class="ws-tag">Post-Production</div><div class="ws-title">Colour Grading Masterclass</div><div class="ws-desc">Lightroom and Capture One workflows for cinematic colour — from raw processing to final export.</div><div class="ws-meta"><span class="ws-meta-pill">Online</span><span class="ws-meta-pill">12 spots</span><span class="ws-meta-pill">3 hours</span></div></div>
+    </div>
+    <div class="ws-card">
+      <div class="ws-thumb"><div class="ws-thumb-placeholder">Co</div><div class="ws-thumb-deco"></div></div>
+      <div class="ws-body"><div class="ws-tag">Commercial</div><div class="ws-title">Pitching to Brands</div><div class="ws-desc">How to position your work, build a rate card, and land commercial photography clients in the Gulf market.</div><div class="ws-meta"><span class="ws-meta-pill">Online</span><span class="ws-meta-pill">10 spots</span><span class="ws-meta-pill">2 hours</span></div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- APPLY -->
+<div class="ipc-cta" id="apply">
+  <div class="ipc-cta-inner reveal">
+    <div>
+      <h2 class="ipc-cta h2" style="font-family:var(--f-display);font-size:clamp(34px,5vw,58px);font-weight:300;">Apply for<br><em style="font-style:italic;color:var(--ipc-g)">membership.</em></h2>
+      <p style="font-size:14px;color:var(--text-3);line-height:1.85;margin-top:16px;max-width:400px">Applications are reviewed monthly. Include a link to your portfolio and a brief statement about your practice.</p>
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:8px;">
+        <a class="btn" href="ipc-awards.html">→ View the Awards Programme</a>
+        <a class="btn" href="contact.html">→ General Enquiries</a>
+      </div>
+    </div>
+    <div>
+      <div class="ipc-form">
+        <div class="ipc-form-row">
+          <input class="ipc-input" placeholder="First name" autocomplete="given-name">
+          <input class="ipc-input" placeholder="Last name" autocomplete="family-name">
+        </div>
+        <input class="ipc-input" placeholder="Email address" type="email" autocomplete="email">
+        <input class="ipc-input" placeholder="Portfolio URL" type="url">
+        <select class="ipc-input"><option value="">Membership tier</option><option>Associate Member</option><option>Full Member</option><option>Fellow (Nomination)</option></select>
+        <textarea class="ipc-input" rows="4" placeholder="Tell us about your practice and why you're applying..." style="resize:vertical;min-height:100px"></textarea>
+        <button class="btn btn-ipc" onclick="
+          const inputs=this.closest('.ipc-form').querySelectorAll('input,select,textarea');
+          const fn=inputs[0].value,ln=inputs[1].value,email=inputs[2].value,portfolio=inputs[3].value,tier=inputs[4].value,note=inputs[5].value;
+          const s=encodeURIComponent('IPC Membership Application — '+fn+' '+ln);
+          const b=encodeURIComponent('Name: '+fn+' '+ln+'\nEmail: '+email+'\nPortfolio: '+portfolio+'\nTier: '+tier+'\n\nStatement:\n'+note+'\n\n— Submitted via ipc page');
+          window.location.href='mailto:Inquiries@egskraw.studio?subject='+s+'&body='+b;
+        " type="button">Submit Application</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer"><div class="site-footer-inner">
+  <div class="footer-brand">IPC · International Photographers Council</div>
+  <div class="footer-links"><a href="index.html">egsk.raw</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a></div>
+  <div class="footer-copy">© 2026 IPC · Founded in Qatar</div>
+</div></footer>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),2000));
+window.addEventListener('scroll',()=>{const d=document.documentElement,p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;document.getElementById('progress').style.width=p+'%';document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);},{passive:true});
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')}),{threshold:.1}).observe(el));
+</script>
+</body>
+</html>
