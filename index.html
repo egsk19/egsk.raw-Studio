@@ -4,11 +4,12 @@
 <meta charset="UTF-8"/>
 <title>egsk.raw — Automotive Photography, Qatar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<meta name="description" content="Cinematic automotive photography by Ebo. Based in Qatar."/>
+<meta name="description" content="Cinematic automotive photography by Ebo. Based in Doha, Qatar. Book a shoot — cars, rollers, night sessions."/>
 <meta name="theme-color" content="#080809"/>
 <link rel="icon" href="favicon.png"/>
 <link rel="stylesheet" href="shared.css"/>
 <style>
+/* ─── HERO ─── */
 .hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden;}
 .hero-media{position:absolute;inset:0;z-index:0;}
 .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.05);transition:transform 10s ease;filter:brightness(.35) saturate(.8);}
@@ -27,6 +28,8 @@
 .hero-scroll-hint span{font-family:var(--f-mono);font-size:8px;letter-spacing:.32em;color:var(--text-4);writing-mode:vertical-rl;text-transform:uppercase;}
 .hero-scroll-hint i{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);border-radius:999px;animation:lpulse 2.2s ease-in-out 3.2s infinite;}
 @keyframes lpulse{0%,100%{opacity:.6;transform:scaleY(1);}50%{opacity:.25;transform:scaleY(.55);}}
+
+/* ─── STATS ─── */
 .stats-band{background:var(--ink-1);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);}
 .stats-grid{max-width:1440px;margin:auto;padding:0 32px;display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--b1);}
 .stat{padding:44px 36px;border-right:1px solid var(--b1);position:relative;}
@@ -35,6 +38,8 @@
 .stat-n{font-family:var(--f-display);font-size:clamp(40px,5.5vw,72px);font-weight:300;line-height:1;color:var(--text);letter-spacing:-.02em;}
 .stat-n sup{font-size:.4em;vertical-align:top;margin-top:.35em;color:var(--gold);letter-spacing:0;}
 .stat-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--text-4);text-transform:uppercase;margin-top:8px;}
+
+/* ─── SELECTED WORK ─── */
 .work-header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:52px;}
 .work-grid{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:auto auto;gap:14px;}
 .work-item{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--ink-2);cursor:pointer;}
@@ -48,18 +53,70 @@
 .work-caption-title{font-family:var(--f-display);font-size:22px;font-weight:400;color:var(--text);}
 .work-caption-sub{font-family:var(--f-mono);font-size:9px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;margin-top:5px;}
 .work-num{position:absolute;top:18px;left:18px;font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;color:var(--text-4);padding:6px 10px;border-radius:var(--r-xs);background:rgba(8,8,9,.45);backdrop-filter:blur(8px);border:1px solid var(--b1);}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:center;margin-top:52px;}
+.about-portrait{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/4;background:var(--ink-2);position:relative;}
+.about-portrait img{width:100%;height:100%;object-fit:cover;}
+.about-portrait-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 0%,transparent 50%);}
+.about-credential{position:absolute;bottom:28px;left:28px;right:28px;display:flex;gap:10px;flex-wrap:wrap;}
+.about-badge{font-family:var(--f-mono);font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;padding:6px 12px;border:1px solid var(--gold-dim);border-radius:var(--r-xs);background:var(--gold-glow);backdrop-filter:blur(8px);}
+.about-text{}
+.about-text h2{font-family:var(--f-display);font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.05;}
+.about-text p{font-size:14px;color:var(--text-3);line-height:1.9;margin-top:18px;}
+.about-credentials-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
+.about-cred-pill{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--r-sm);border:1px solid var(--b1);background:var(--ink-1);}
+.about-cred-pill span:first-child{font-size:14px;}
+.about-cred-pill span:last-child{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;color:var(--text-3);text-transform:uppercase;}
+
+/* ─── PROCESS ─── */
 .approach-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;}
 .approach-card{padding:40px 32px;border-radius:var(--r-lg);border:1px solid var(--b1);background:var(--ink-1);transition:background .3s,border-color .3s,transform .3s;}
 .approach-card:hover{background:var(--ink-2);border-color:var(--b2);transform:translateY(-3px);box-shadow:var(--sh-md);}
 .approach-n{font-family:var(--f-display);font-size:64px;font-weight:300;color:var(--text-4);line-height:1;margin-bottom:24px;}
 .approach-card h3{font-family:var(--f-ui);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text);margin-bottom:12px;}
 .approach-card p{font-size:13px;color:var(--text-3);line-height:1.85;}
+
+/* ─── SERVICES ─── */
 .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:52px;}
 .service-card{padding:32px 26px;border-radius:var(--r-lg);border:1px solid var(--b1);background:var(--ink-1);transition:background .3s,border-color .3s,transform .3s;cursor:default;}
 .service-card:hover{background:var(--ink-2);border-color:var(--b2);transform:translateY(-2px);}
 .service-n{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
 .service-card h3{font-size:14px;font-weight:600;letter-spacing:.05em;color:var(--text);margin-bottom:10px;}
 .service-card p{font-size:12px;color:var(--text-3);line-height:1.8;}
+
+/* ─── PRICING ─── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;}
+.pricing-card{padding:44px 36px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);display:flex;flex-direction:column;gap:20px;position:relative;overflow:hidden;transition:border-color .3s,background .3s,transform .3s;}
+.pricing-card:hover{border-color:var(--b2);background:var(--ink-2);transform:translateY(-3px);box-shadow:var(--sh-md);}
+.pricing-card.featured{border-color:rgba(201,185,155,.2);background:var(--ink-2);}
+.pricing-card.featured::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(201,185,155,.06) 0%,transparent 65%);pointer-events:none;}
+.pricing-tier{font-family:var(--f-mono);font-size:9px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;}
+.pricing-name{font-family:var(--f-display);font-size:30px;font-weight:300;line-height:1.1;}
+.pricing-from{display:flex;align-items:baseline;gap:6px;margin-top:4px;}
+.pricing-from-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;color:var(--text-4);text-transform:uppercase;}
+.pricing-from-amount{font-family:var(--f-display);font-size:36px;font-weight:300;color:var(--text);}
+.pricing-from-currency{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--text-3);}
+.pricing-desc{font-size:13px;color:var(--text-3);line-height:1.8;}
+.pricing-includes{display:flex;flex-direction:column;gap:10px;flex:1;}
+.pricing-item{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--text-3);line-height:1.6;}
+.pricing-dot{width:14px;height:14px;border-radius:50%;border:1px solid var(--gold-dim);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:7px;color:var(--gold);margin-top:1px;}
+.pricing-badge{display:inline-flex;align-self:flex-start;font-family:var(--f-mono);font-size:8px;letter-spacing:.2em;color:var(--text);background:var(--gold-glow);border:1px solid var(--gold-dim);padding:4px 10px;border-radius:var(--r-xs);text-transform:uppercase;}
+.pricing-note{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;color:var(--text-4);border-top:1px solid var(--b1);padding-top:16px;}
+
+/* ─── EDITING GUIDE ─── */
+.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:52px;}
+.guide-intro{display:flex;flex-direction:column;gap:20px;padding:44px 36px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);}
+.guide-intro h3{font-family:var(--f-display);font-size:32px;font-weight:300;line-height:1.1;}
+.guide-intro p{font-size:13px;color:var(--text-3);line-height:1.85;}
+.guide-tips{display:flex;flex-direction:column;gap:14px;}
+.guide-tip{padding:24px 28px;border-radius:var(--r-lg);border:1px solid var(--b1);background:var(--ink-1);transition:border-color .3s,background .3s;}
+.guide-tip:hover{border-color:var(--b2);background:var(--ink-2);}
+.guide-tip-n{font-family:var(--f-mono);font-size:9px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.guide-tip h4{font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--text);margin-bottom:6px;}
+.guide-tip p{font-size:12px;color:var(--text-3);line-height:1.75;}
+
+/* ─── BEFORE/AFTER ─── */
 .ba-wrap{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);box-shadow:var(--sh-lg);}
 .ba-stage{position:relative;aspect-ratio:16/9;cursor:ew-resize;touch-action:none;overflow:hidden;}
 .ba-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none;pointer-events:none;}
@@ -70,6 +127,8 @@
 .ba-tag{font-family:var(--f-mono);font-size:9px;letter-spacing:.24em;color:var(--text-3);text-transform:uppercase;padding:7px 14px;border-radius:var(--r-xs);border:1px solid var(--b2);background:rgba(8,8,9,.5);backdrop-filter:blur(8px);}
 .ba-footer{padding:20px 28px;border-top:1px solid var(--b1);display:flex;align-items:center;gap:16px;}
 .ba-slider{flex:1;accent-color:var(--gold);cursor:pointer;}
+
+/* ─── DELIVERABLES ─── */
 .deliver-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:52px;align-items:start;}
 .deliver-list{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);}
 .deliver-item{display:flex;gap:20px;align-items:flex-start;padding:26px 30px;border-bottom:1px solid var(--b1);transition:background .25s;}
@@ -82,6 +141,8 @@
 .contact-sidebar h3{font-family:var(--f-display);font-size:30px;font-weight:300;}
 .contact-sidebar p{font-size:13px;color:var(--text-3);line-height:1.8;}
 .btn-stack{display:flex;flex-direction:column;gap:10px;}
+
+/* ─── TESTIMONIALS ─── */
 .quotes-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:4px;margin-top:52px;scrollbar-width:thin;scrollbar-color:var(--b2) transparent;}
 .quote-card{min-width:min(400px,88vw);padding:36px 32px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);scroll-snap-align:start;display:flex;flex-direction:column;gap:20px;transition:border-color .3s,background .3s;}
 .quote-card:hover{border-color:var(--b2);background:var(--ink-2);}
@@ -90,6 +151,42 @@
 .quote-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
 .quote-car{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;padding:6px 12px;border:1px solid var(--gold-dim);border-radius:var(--r-xs);background:var(--gold-glow);}
 .quote-who{font-size:11px;color:var(--text-4);letter-spacing:.06em;}
+
+/* ─── NEWSLETTER ─── */
+.newsletter-strip{background:var(--ink-1);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);}
+.newsletter-inner{max-width:1440px;margin:auto;padding:80px 32px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.newsletter-left h2{font-family:var(--f-display);font-size:clamp(32px,4.5vw,54px);font-weight:300;line-height:1.05;}
+.newsletter-left h2 em{font-style:italic;color:var(--gold);}
+.newsletter-left p{font-size:13px;color:var(--text-3);line-height:1.85;margin-top:16px;max-width:420px;}
+.newsletter-bullets{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.newsletter-bullet{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-3);}
+.newsletter-bullet-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.newsletter-form{display:flex;flex-direction:column;gap:12px;}
+.newsletter-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.nl-input{background:var(--ink-2);border:1px solid var(--b1);color:var(--text);border-radius:var(--r-md);padding:14px 18px;font-family:var(--f-ui);font-size:14px;outline:none;transition:border-color .25s;width:100%;}
+.nl-input:focus{border-color:var(--b2);}
+.nl-input::placeholder{color:var(--text-4);}
+.nl-submit{background:var(--text);color:var(--ink);border:1px solid var(--text);border-radius:var(--r-md);padding:15px 24px;font-family:var(--f-ui);font-size:11px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .25s,border-color .25s,transform .2s;width:100%;}
+.nl-submit:hover{background:var(--gold);border-color:var(--gold);}
+.nl-submit:disabled{opacity:.5;cursor:not-allowed;}
+.nl-note{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;color:var(--text-4);}
+.nl-msg{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;padding:12px 16px;border-radius:var(--r-sm);display:none;}
+.nl-msg.success{display:block;color:var(--gold);background:var(--gold-glow);border:1px solid var(--gold-dim);}
+.nl-msg.error{display:block;color:#e57373;background:rgba(229,115,115,.06);border:1px solid rgba(229,115,115,.15);}
+
+/* ─── INSTAGRAM FEED ─── */
+.ig-feed{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:52px;}
+.ig-item{border-radius:var(--r-md);overflow:hidden;aspect-ratio:1;background:var(--ink-2);position:relative;cursor:pointer;}
+.ig-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1),filter .4s;filter:brightness(.85) saturate(.85);}
+.ig-item:hover img{transform:scale(1.06);filter:brightness(1) saturate(1);}
+.ig-overlay{position:absolute;inset:0;background:rgba(8,8,9,.7);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.ig-item:hover .ig-overlay{opacity:1;}
+.ig-overlay-icon{font-size:24px;}
+.ig-overlay-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;color:var(--text-3);text-transform:uppercase;}
+.ig-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--ink-2);}
+.ig-placeholder-n{font-family:var(--f-display);font-size:28px;font-weight:300;color:rgba(201,185,155,.15);}
+
+/* ─── MEGA CTA ─── */
 .cta-strip{background:var(--ink-1);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);}
 .cta-inner{max-width:1440px;margin:auto;padding:100px 32px;display:flex;justify-content:space-between;align-items:center;gap:48px;flex-wrap:wrap;}
 .cta-h{font-family:var(--f-display);font-size:clamp(42px,6vw,78px);font-weight:300;line-height:1.0;}
@@ -99,8 +196,11 @@
 .social-chips{display:flex;gap:8px;flex-wrap:wrap;}
 .social-chip{font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;color:var(--text-3);text-decoration:none;padding:9px 15px;border:1px solid var(--b1);border-radius:var(--r-sm);text-transform:uppercase;transition:color .2s,border-color .2s,background .2s;}
 .social-chip:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--gold-glow);}
-@media(max-width:960px){.work-grid{grid-template-columns:1fr 1fr;}.work-item-1{grid-row:1;grid-column:span 2;aspect-ratio:16/9;}.approach-row{grid-template-columns:1fr;}.services-grid{grid-template-columns:repeat(2,1fr);}.deliver-grid{grid-template-columns:1fr;}.stats-grid{grid-template-columns:repeat(2,1fr);}.cta-inner{flex-direction:column;align-items:flex-start;}}
-@media(max-width:580px){.services-grid{grid-template-columns:1fr;}.work-grid{grid-template-columns:1fr;}.work-item-1{grid-column:1;aspect-ratio:3/4;}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){.pricing-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:960px){.work-grid{grid-template-columns:1fr 1fr;}.work-item-1{grid-row:1;grid-column:span 2;aspect-ratio:16/9;}.approach-row{grid-template-columns:1fr;}.services-grid{grid-template-columns:repeat(2,1fr);}.deliver-grid{grid-template-columns:1fr;}.stats-grid{grid-template-columns:repeat(2,1fr);}.cta-inner{flex-direction:column;align-items:flex-start;}.about-grid{grid-template-columns:1fr;}.guide-grid{grid-template-columns:1fr;}.newsletter-inner{grid-template-columns:1fr;gap:48px;}.ig-feed{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){.services-grid{grid-template-columns:1fr;}.work-grid{grid-template-columns:1fr;}.work-item-1{grid-column:1;aspect-ratio:3/4;}.pricing-grid{grid-template-columns:1fr;}.ig-feed{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -116,14 +216,17 @@
     <div class="nav-links">
       <a href="index.html" aria-current="page">Home</a>
       <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a>
       <a href="ipc.html">IPC</a>
       <a href="ipc-awards.html">Awards</a>
       <a href="contact.html">Contact</a>
     </div>
+    <!-- PRIMARY CTA: single, clear action -->
     <div class="nav-cta"><a class="btn btn-solid btn-sm" href="contact.html">Book a Shoot</a></div>
   </div>
 </nav>
 
+<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-media"><img src="images/hero.jpg" alt="Hero automotive photograph"></div>
   <div class="hero-fog"></div>
@@ -132,14 +235,18 @@
     <h1>Automotive<br>photography<br><em>with intent.</em></h1>
     <p class="hero-sub">Precision. Light. Motion. Cinematic work built to feel like a feature — not a snapshot.</p>
     <div class="hero-actions">
-      <a class="btn btn-solid" href="portfolio.html">View Portfolio</a>
-      <a class="btn btn-ghost" href="contact.html">Book a Session</a>
+      <!-- Primary: book -->
+      <a class="btn btn-solid" href="contact.html">Book a Shoot</a>
+      <!-- Secondary: portfolio -->
+      <a class="btn btn-ghost" href="portfolio.html">View Portfolio</a>
+      <!-- Tertiary: IPC (small / ghost) -->
       <a class="btn" href="ipc.html">IPC Council</a>
     </div>
   </div>
   <div class="hero-scroll-hint"><span>scroll</span><i></i></div>
 </section>
 
+<!-- ═══ STATS ═══ -->
 <div class="stats-band"><div class="stats-grid reveal">
   <div class="stat"><div class="stat-n"><sup>+</sup>60</div><div class="stat-label">Shoots Completed</div></div>
   <div class="stat"><div class="stat-n"><sup>+</sup>5</div><div class="stat-label">Years Experience</div></div>
@@ -147,6 +254,7 @@
   <div class="stat"><div class="stat-n"><sup>+</sup>30</div><div class="stat-label">Satisfied Clients</div></div>
 </div></div>
 
+<!-- ═══ SELECTED WORK ═══ -->
 <div class="section"><div class="section-inner">
   <div class="work-header reveal">
     <div><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Selected Work</span></div><h2 class="h2">Recent <span class="em">sessions.</span></h2></div>
@@ -159,6 +267,41 @@
   </div>
 </div></div>
 
+<!-- ═══ ABOUT ═══ -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">The Photographer</span></div>
+    <h2 class="h2">Made in Qatar.<br><span class="em">Built on intent.</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-portrait reveal d1">
+      <img src="images/portrait.jpg" alt="Ebo — egsk.raw photographer" loading="lazy" onerror="this.style.display='none'">
+      <div class="about-portrait-overlay"></div>
+      <div class="about-credential">
+        <span class="about-badge">IAAP Recognised</span>
+        <span class="about-badge">IPC · Full Member</span>
+        <span class="about-badge">Doha, Qatar</span>
+      </div>
+    </div>
+    <div class="about-text reveal d2">
+      <p style="font-size:15px;color:var(--text-2);line-height:1.9;">I'm Ebo — a Doha-based automotive photographer with five years of obsessive focus on one thing: making cars look exactly how they feel to drive.</p>
+      <p>My work is cinematic, intentional, and location-driven. Every shot is planned to honour the car's design language — not just document it. I don't do generic car park sessions. I scout, plan, and execute.</p>
+      <p>Recognised by the International Automotive & Advertising Photographers (IAAP) and a founding member of the International Photographers Council (IPC), based in Qatar.</p>
+      <div class="about-credentials-row">
+        <div class="about-cred-pill"><span>📸</span><span>5+ Years</span></div>
+        <div class="about-cred-pill"><span>🏆</span><span>IAAP Recognised</span></div>
+        <div class="about-cred-pill"><span>🏛</span><span>IPC Founder</span></div>
+        <div class="about-cred-pill"><span>📍</span><span>Doha, Qatar</span></div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;">
+        <a class="btn btn-solid" href="contact.html">Book a Shoot</a>
+        <a class="btn btn-ghost" href="about.html">Full Story →</a>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══ PROCESS ═══ -->
 <div class="section" style="padding-top:0"><div class="section-inner">
   <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">The Process</span></div><h2 class="h2">Every shot is <span class="em">intentional.</span></h2></div>
   <div class="approach-row">
@@ -168,6 +311,7 @@
   </div>
 </div></div>
 
+<!-- ═══ SERVICES ═══ -->
 <div class="section" style="padding-top:0"><div class="section-inner">
   <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Services</span></div><h2 class="h2">Available <span class="em">for.</span></h2></div>
   <div class="services-grid">
@@ -182,6 +326,113 @@
   </div>
 </div></div>
 
+<!-- ═══ PRICING ═══ -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Pricing</span></div>
+    <h2 class="h2">Clear tiers.<br><span class="em">No surprises.</span></h2>
+    <p class="body-sm" style="margin-top:12px;max-width:500px">All shoots are quoted to your exact brief — these are starting points. Add-ons (rollers, extra locations, RAW files) are scoped and priced separately, always upfront.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal d1">
+      <div class="pricing-tier">Essential</div>
+      <div class="pricing-name">Street Session</div>
+      <div class="pricing-from">
+        <span class="pricing-from-label">From</span>
+        <span class="pricing-from-amount">800</span>
+        <span class="pricing-from-currency">QAR</span>
+      </div>
+      <p class="pricing-desc">For a focused single-location session. Perfect for social media sets or a quick update shoot.</p>
+      <div class="pricing-includes">
+        <div class="pricing-item"><div class="pricing-dot">✦</div>1 location · 1.5–2 hrs</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>10–15 edited images</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>Web + high-res delivery</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>1-week turnaround</div>
+      </div>
+      <a class="btn" href="contact.html" style="margin-top:8px">Book →</a>
+      <p class="pricing-note">Rollers, extra locations & RAW files available as add-ons</p>
+    </div>
+    <div class="pricing-card featured reveal d2">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-tier">Signature</div>
+      <div class="pricing-name">Feature Set</div>
+      <div class="pricing-from">
+        <span class="pricing-from-label">From</span>
+        <span class="pricing-from-amount">2,000</span>
+        <span class="pricing-from-currency">QAR</span>
+      </div>
+      <p class="pricing-desc">Full editorial-style session. Multiple locations, wide-to-detail coverage, cinematic grade.</p>
+      <div class="pricing-includes">
+        <div class="pricing-item"><div class="pricing-dot">✦</div>2–3 locations · 3–4 hrs</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>25–40 edited images</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>Web + high-res + Instagram set</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>Cinematic colour grade</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>1–2 week turnaround</div>
+      </div>
+      <a class="btn btn-solid" href="contact.html" style="margin-top:8px">Book →</a>
+      <p class="pricing-note">Most clients choose this tier</p>
+    </div>
+    <div class="pricing-card reveal d3">
+      <div class="pricing-tier">Full Production</div>
+      <div class="pricing-name">Brand / Commercial</div>
+      <div class="pricing-from">
+        <span class="pricing-from-label">From</span>
+        <span class="pricing-from-amount">5,000</span>
+        <span class="pricing-from-currency">QAR</span>
+      </div>
+      <p class="pricing-desc">For dealerships, brands, and campaigns. Planned production including rollers, BTS, and commercial licensing.</p>
+      <div class="pricing-includes">
+        <div class="pricing-item"><div class="pricing-dot">✦</div>Full day · multiple locations</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>60+ edited images</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>Rollers included</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>BTS content</div>
+        <div class="pricing-item"><div class="pricing-dot">✦</div>Commercial licence</div>
+      </div>
+      <a class="btn btn-ghost" href="contact.html" style="margin-top:8px">Get a Quote →</a>
+      <p class="pricing-note">Custom quoted to your brief</p>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══ EDITING GUIDE ═══ -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Editing Guide</span></div>
+    <h2 class="h2">The cinematic <span class="em">look, explained.</span></h2>
+  </div>
+  <div class="guide-grid">
+    <div class="guide-intro reveal d1">
+      <h3>How automotive photos go from raw to cinematic.</h3>
+      <p>The edit is where the car's character is either revealed or killed. After 5+ years and 60+ shoots, here's what consistently separates a great automotive photo from a good one.</p>
+      <p>These are the exact principles applied to every image delivered under the egsk.raw name.</p>
+      <a class="btn btn-ghost" href="contact.html" style="margin-top:8px;align-self:flex-start">Book a session →</a>
+    </div>
+    <div class="guide-tips">
+      <div class="guide-tip reveal">
+        <div class="guide-tip-n">Principle 01</div>
+        <h4>Control the highlights first</h4>
+        <p>Blown-out skies and windows destroy depth. Recover highlights before touching anything else — automotive work lives and dies by retained detail in bright areas.</p>
+      </div>
+      <div class="guide-tip reveal d1">
+        <div class="guide-tip-n">Principle 02</div>
+        <h4>Lift the blacks, not the exposure</h4>
+        <p>Crushed shadows lose body-line detail. A gentle blacks lift (+15–25) brings out the sculpting without washing out the image. Keep overall exposure neutral.</p>
+      </div>
+      <div class="guide-tip reveal d2">
+        <div class="guide-tip-n">Principle 03</div>
+        <h4>Colour grade to the car, not a preset</h4>
+        <p>A dark car in warm golden light calls for a different grade than a white car on a grey street. Presets are starting points — always tune HSL to the actual subject.</p>
+      </div>
+      <div class="guide-tip reveal d3">
+        <div class="guide-tip-n">Principle 04</div>
+        <h4>Texture over clarity — always</h4>
+        <p>Texture adds tactility without the halos and over-processing that Clarity creates. On body panels and grilles, Texture is the difference between cinematic and crunchy.</p>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ═══ BEFORE / AFTER ═══ -->
 <div class="section" style="padding-top:0"><div class="section-inner">
   <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Post-Production</span></div><h2 class="h2">Before <span class="em">/ After.</span></h2><p class="body-sm" style="margin-top:12px;max-width:460px">Drag the handle or use the slider to compare raw capture vs. finished edit.</p></div>
   <div style="margin-top:40px" class="reveal d1">
@@ -189,6 +440,7 @@
   </div>
 </div></div>
 
+<!-- ═══ DELIVERABLES ═══ -->
 <div class="section" style="padding-top:0"><div class="section-inner">
   <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">What You Get</span></div><h2 class="h2">Clear <span class="em">deliverables.</span></h2></div>
   <div class="deliver-grid">
@@ -204,25 +456,84 @@
       <div class="btn-stack">
         <a class="btn btn-solid" href="contact.html">Book a Shoot</a>
         <a class="btn btn-ghost" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">DM on Instagram</a>
-        <a class="btn" href="mailto:Inquiries@egskraw.studio">Send an Email</a>
       </div>
     </div>
   </div>
 </div></div>
 
+<!-- ═══ TESTIMONIALS ═══ -->
 <div class="section" style="padding-top:0"><div class="section-inner">
   <div class="reveal"><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Client Feedback</span></div><h2 class="h2">What <span class="em">clients say.</span></h2></div>
   <div class="quotes-track reveal d1">
-    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">Easily the best photos I've had of my car.</div><div class="quote-meta"><span class="quote-car">Mini Cooper SE</span><span class="quote-who">Client</span></div></div>
-    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">I told him to surprise me — and he delivered.</div><div class="quote-meta"><span class="quote-car">2007 Hawkeye Impreza</span><span class="quote-who">Client</span></div></div>
-    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">Clean, professional, and the edits were exactly the vibe.</div><div class="quote-meta"><span class="quote-car">Performance Build</span><span class="quote-who">Client</span></div></div>
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">Easily the best photos I've had of my car. Worth every riyal.</div><div class="quote-meta"><span class="quote-car">Mini Cooper SE</span><span class="quote-who">Client · 2025</span></div></div>
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">I told him to surprise me — and he delivered something I didn't expect.</div><div class="quote-meta"><span class="quote-car">2007 Hawkeye Impreza</span><span class="quote-who">Client · 2025</span></div></div>
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">Clean, professional, and the edits were exactly the vibe we were after.</div><div class="quote-meta"><span class="quote-car">Performance Build</span><span class="quote-who">Client · 2025</span></div></div>
+    <div class="quote-card"><div class="quote-mark">"</div><div class="quote-text">The rollers came out better than anything I've seen shot in Doha.</div><div class="quote-meta"><span class="quote-car">Modified 350Z</span><span class="quote-who">Client · 2024</span></div></div>
   </div>
 </div></div>
 
+<!-- ═══ INSTAGRAM FEED ═══ -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:0;">
+    <div><div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Instagram</span></div><h2 class="h2">Follow the <span class="em">work.</span></h2></div>
+    <a class="btn btn-ghost" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">@egsk.raw ↗</a>
+  </div>
+  <!-- Instagram embed grid — replace hrefs with actual post URLs, img srcs with embed thumbnails -->
+  <div class="ig-feed reveal d1">
+    <a class="ig-item" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">
+      <div class="ig-placeholder"><div class="ig-placeholder-n">01</div></div>
+      <div class="ig-overlay"><div class="ig-overlay-icon">📸</div><div class="ig-overlay-label">View on Instagram</div></div>
+    </a>
+    <a class="ig-item" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">
+      <div class="ig-placeholder"><div class="ig-placeholder-n">02</div></div>
+      <div class="ig-overlay"><div class="ig-overlay-icon">📸</div><div class="ig-overlay-label">View on Instagram</div></div>
+    </a>
+    <a class="ig-item" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">
+      <div class="ig-placeholder"><div class="ig-placeholder-n">03</div></div>
+      <div class="ig-overlay"><div class="ig-overlay-icon">📸</div><div class="ig-overlay-label">View on Instagram</div></div>
+    </a>
+    <a class="ig-item" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">
+      <div class="ig-placeholder"><div class="ig-placeholder-n">04</div></div>
+      <div class="ig-overlay"><div class="ig-overlay-icon">📸</div><div class="ig-overlay-label">View on Instagram</div></div>
+    </a>
+  </div>
+  <p class="body-sm" style="margin-top:16px;text-align:center;">
+    To show live Instagram posts, add <a href="https://elfsight.com/instagram-feed-widget/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">Elfsight Instagram Feed</a> or connect via Meta's Basic Display API. Images above are placeholder slots — replace <code style="font-family:var(--f-mono);font-size:11px;color:var(--text-3)">.ig-placeholder</code> with <code style="font-family:var(--f-mono);font-size:11px;color:var(--text-3)">&lt;img src="..."&gt;</code>.
+  </p>
+</div></div>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<div class="newsletter-strip">
+  <div class="newsletter-inner reveal">
+    <div class="newsletter-left">
+      <h2>Get the <em>edit.</em></h2>
+      <p>Occasional emails covering cinematic editing techniques, upcoming workshops, behind-the-scenes from shoots, and first access to new availability.</p>
+      <div class="newsletter-bullets">
+        <div class="newsletter-bullet"><div class="newsletter-bullet-dot"></div>Editing tips & technique breakdowns</div>
+        <div class="newsletter-bullet"><div class="newsletter-bullet-dot"></div>Behind-the-scenes from shoots</div>
+        <div class="newsletter-bullet"><div class="newsletter-bullet-dot"></div>Workshop announcements</div>
+        <div class="newsletter-bullet"><div class="newsletter-bullet-dot"></div>No spam — unsubscribe anytime</div>
+      </div>
+    </div>
+    <div>
+      <div class="newsletter-form" id="nlForm">
+        <div class="newsletter-row">
+          <input class="nl-input" id="nlName" placeholder="Your name" autocomplete="name">
+          <input class="nl-input" id="nlEmail" type="email" placeholder="Email address" autocomplete="email">
+        </div>
+        <button class="nl-submit" id="nlSubmit" type="button">Subscribe</button>
+        <p class="nl-note">No spam. Unsubscribe any time.</p>
+        <div class="nl-msg" id="nlMsg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA STRIP ═══ -->
 <div class="cta-strip"><div class="cta-inner reveal">
   <div><h2 class="cta-h">Ready<br>to <em>shoot?</em></h2><p class="cta-sub">Let's plan something that does your build justice.</p></div>
   <div class="cta-right">
-    <a class="btn btn-solid" href="contact.html">Get in Touch</a>
+    <a class="btn btn-solid" href="contact.html">Book a Shoot</a>
     <div class="social-chips">
       <a class="social-chip" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">Instagram</a>
       <a class="social-chip" href="mailto:Inquiries@egskraw.studio">Email</a>
@@ -233,15 +544,75 @@
 
 <footer class="site-footer"><div class="site-footer-inner">
   <div class="footer-brand">egsk.raw</div>
-  <div class="footer-links"><a href="portfolio.html">Portfolio</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a></div>
+  <div class="footer-links"><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a></div>
   <div class="footer-copy">© 2026 · All rights reserved · Qatar</div>
 </div></footer>
 
 <script>
+// Loader
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),2100));
-window.addEventListener('scroll',()=>{const d=document.documentElement,p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;document.getElementById('progress').style.width=p+'%';document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);},{passive:true});
-document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')}),{threshold:.1}).observe(el));
-(()=>{const stage=document.getElementById('baStage'),range=document.getElementById('baRange'),after=document.getElementById('baAfter'),handle=document.getElementById('baHandle'),knob=document.getElementById('baKnob');if(!stage)return;const cl=(n,a,b)=>Math.max(a,Math.min(b,n));const set=p=>{const v=cl(p,0,100);after.style.clipPath=`inset(0 0 0 ${v}%)`;handle.style.left=knob.style.left=v+'%';range.value=v;};set(50);range.addEventListener('input',e=>set(+e.target.value));let d=false;const fx=x=>((cl(x-stage.getBoundingClientRect().left,0,stage.getBoundingClientRect().width))/stage.getBoundingClientRect().width)*100;stage.addEventListener('pointerdown',e=>{d=true;stage.setPointerCapture(e.pointerId);set(fx(e.clientX));});stage.addEventListener('pointermove',e=>{if(d)set(fx(e.clientX));});window.addEventListener('pointerup',()=>d=false);})();
+
+// Progress + nav scroll
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement,p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;
+  document.getElementById('progress').style.width=p+'%';
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);
+},{passive:true});
+
+// Reveal on scroll
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)e.target.classList.add('up')
+}),{threshold:.08}).observe(el));
+
+// Before/After slider
+(()=>{
+  const stage=document.getElementById('baStage'),range=document.getElementById('baRange'),
+        after=document.getElementById('baAfter'),handle=document.getElementById('baHandle'),
+        knob=document.getElementById('baKnob');
+  if(!stage)return;
+  const cl=(n,a,b)=>Math.max(a,Math.min(b,n));
+  const set=p=>{const v=cl(p,0,100);after.style.clipPath=`inset(0 0 0 ${v}%)`;handle.style.left=knob.style.left=v+'%';range.value=v;};
+  set(50);range.addEventListener('input',e=>set(+e.target.value));
+  let d=false;
+  const fx=x=>((cl(x-stage.getBoundingClientRect().left,0,stage.getBoundingClientRect().width))/stage.getBoundingClientRect().width)*100;
+  stage.addEventListener('pointerdown',e=>{d=true;stage.setPointerCapture(e.pointerId);set(fx(e.clientX));});
+  stage.addEventListener('pointermove',e=>{if(d)set(fx(e.clientX));});
+  window.addEventListener('pointerup',()=>d=false);
+})();
+
+// Newsletter
+document.getElementById('nlSubmit').addEventListener('click', async()=>{
+  const name=document.getElementById('nlName').value.trim();
+  const email=document.getElementById('nlEmail').value.trim();
+  const msg=document.getElementById('nlMsg');
+  const btn=document.getElementById('nlSubmit');
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    msg.className='nl-msg error';msg.textContent='Please enter a valid email address.';return;
+  }
+  btn.disabled=true;btn.textContent='Subscribing...';
+  try{
+    // Replace the URL below with your actual Vercel deployment URL
+    const res=await fetch('https://your-deployment.vercel.app/api/subscribe',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email,name})
+    });
+    const data=await res.json();
+    if(res.ok){
+      msg.className='nl-msg success';
+      msg.textContent='You\'re in. Watch your inbox.';
+      document.getElementById('nlName').value='';
+      document.getElementById('nlEmail').value='';
+    } else {
+      throw new Error(data.error||'Subscription failed');
+    }
+  }catch(err){
+    // Fallback: open email client if API not deployed yet
+    msg.className='nl-msg error';
+    msg.textContent='API not yet deployed — email Inquiries@egskraw.studio to subscribe manually.';
+    console.warn('Newsletter API not deployed:',err.message);
+  }
+  btn.disabled=false;btn.textContent='Subscribe';
+});
 </script>
 </body>
 </html>
