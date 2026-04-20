@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><title>About — Ebo · egsk.raw</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="description" content="About Ebo — the photographer behind egsk.raw. IAAP-recognised automotive photographer based in Doha, Qatar."/>
+<link rel="icon" href="favicon.png"/><link rel="stylesheet" href="shared.css"/>
+<style>
+/* ─── PAGE HERO ─── */
+.about-hero{padding:calc(150px + var(--st)) 32px 80px;max-width:1440px;margin:auto;}
+.about-hero p{font-size:15px;color:var(--text-3);line-height:1.85;margin-top:16px;max-width:520px;}
+
+/* ─── STORY GRID ─── */
+.story-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:28px;margin-top:56px;align-items:start;}
+.story-portrait{position:sticky;top:120px;}
+.story-portrait-img{border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/4;background:var(--ink-2);position:relative;}
+.story-portrait-img img{width:100%;height:100%;object-fit:cover;}
+.story-portrait-overlay{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 0%,transparent 45%);}
+.story-portrait-meta{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.portrait-stat{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;border-radius:var(--r-sm);border:1px solid var(--b1);background:var(--ink-1);}
+.portrait-stat-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;color:var(--text-4);text-transform:uppercase;}
+.portrait-stat-val{font-size:12px;color:var(--text);}
+.story-text{}
+.story-chapter{margin-bottom:52px;}
+.story-chapter-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.story-chapter h2{font-family:var(--f-display);font-size:clamp(28px,3.5vw,42px);font-weight:300;line-height:1.1;margin-bottom:20px;}
+.story-chapter p{font-size:14px;color:var(--text-3);line-height:1.9;margin-bottom:14px;}
+.story-chapter p:last-child{margin-bottom:0;}
+
+/* ─── CREDENTIALS ─── */
+.creds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px;}
+.cred-card{padding:36px 30px;border-radius:var(--r-xl);border:1px solid var(--b1);background:var(--ink-1);transition:border-color .3s,background .3s,transform .3s;}
+.cred-card:hover{border-color:var(--b2);background:var(--ink-2);transform:translateY(-3px);box-shadow:var(--sh-md);}
+.cred-icon{width:44px;height:44px;border-radius:var(--r-md);border:1px solid var(--b2);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:20px;}
+.cred-card h3{font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--text);margin-bottom:8px;}
+.cred-card p{font-size:12px;color:var(--text-3);line-height:1.8;}
+.cred-tag{display:inline-flex;margin-top:14px;font-family:var(--f-mono);font-size:8px;letter-spacing:.18em;color:var(--gold);padding:5px 10px;border:1px solid var(--gold-dim);border-radius:var(--r-xs);text-transform:uppercase;}
+
+/* ─── GEAR / TOOLS ─── */
+.gear-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:52px;}
+.gear-col{}
+.gear-category{font-family:var(--f-mono);font-size:9px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:16px;}
+.gear-list{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);}
+.gear-item{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--b1);transition:background .2s;}
+.gear-item:last-child{border-bottom:none;}
+.gear-item:hover{background:var(--ink-2);}
+.gear-name{font-size:13px;color:var(--text);}
+.gear-role{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;color:var(--text-4);text-transform:uppercase;}
+
+/* ─── CASE STUDIES ─── */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:52px;}
+.case-card{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--b1);background:var(--ink-1);transition:border-color .3s,transform .3s;}
+.case-card:hover{border-color:var(--b2);transform:translateY(-2px);}
+.case-img{aspect-ratio:16/9;background:var(--ink-2);position:relative;overflow:hidden;}
+.case-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1);}
+.case-card:hover .case-img img{transform:scale(1.04);}
+.case-img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;}
+.case-img-placeholder span{font-family:var(--f-display);font-size:48px;font-weight:300;color:rgba(201,185,155,.12);}
+.case-body{padding:28px 30px;}
+.case-tag{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.case-title{font-family:var(--f-display);font-size:24px;font-weight:300;color:var(--text);margin-bottom:10px;}
+.case-summary{font-size:13px;color:var(--text-3);line-height:1.8;margin-bottom:20px;}
+.case-stats{display:flex;gap:0;border:1px solid var(--b1);border-radius:var(--r-sm);overflow:hidden;}
+.case-stat{flex:1;padding:14px 16px;border-right:1px solid var(--b1);text-align:center;}
+.case-stat:last-child{border-right:none;}
+.case-stat-n{font-family:var(--f-display);font-size:22px;font-weight:300;color:var(--text);line-height:1;}
+.case-stat-l{font-family:var(--f-mono);font-size:8px;letter-spacing:.2em;color:var(--text-4);text-transform:uppercase;margin-top:4px;}
+
+/* ─── CTA ─── */
+.about-cta{background:var(--ink-1);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);}
+.about-cta-inner{max-width:1440px;margin:auto;padding:90px 32px;display:flex;justify-content:space-between;align-items:center;gap:48px;flex-wrap:wrap;}
+.about-cta-h{font-family:var(--f-display);font-size:clamp(38px,5vw,64px);font-weight:300;line-height:1.0;}
+.about-cta-h em{font-style:italic;color:var(--gold);}
+
+@media(max-width:960px){.story-grid{grid-template-columns:1fr;}.story-portrait{position:static;}.creds-grid{grid-template-columns:1fr 1fr;}.gear-grid{grid-template-columns:1fr;}.case-grid{grid-template-columns:1fr;}.about-cta-inner{flex-direction:column;align-items:flex-start;}}
+@media(max-width:580px){.creds-grid{grid-template-columns:1fr;}.about-hero{padding:calc(120px + var(--st)) 16px 60px;}}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="loader-wordmark"><span style="animation-delay:.05s">A</span><span style="animation-delay:.12s">b</span><span style="animation-delay:.19s">o</span><span style="animation-delay:.26s">u</span><span style="animation-delay:.33s">t</span></div>
+  <div class="loader-rule"></div>
+  <div class="loader-label">egsk.raw · The Photographer</div>
+</div>
+<div id="progress"></div>
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><div class="nav-brand-mark"><span></span></div><div><div class="nav-brand-name">egsk.raw</div><div class="nav-brand-sub">Photography</div></div></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="portfolio.html">Portfolio</a><a href="about.html" aria-current="page">About</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta"><a class="btn btn-solid btn-sm" href="contact.html">Book a Shoot</a></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero reveal">
+  <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">The Photographer</span></div>
+  <h1 class="h1">Ebo.<br><span class="em">egsk.raw</span></h1>
+  <p>IAAP-recognised automotive photographer. Founder of the International Photographers Council. Based in Doha, Qatar.</p>
+</div>
+
+<!-- STORY -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="story-grid">
+    <div class="story-portrait">
+      <div class="story-portrait-img reveal">
+        <img src="images/portrait.jpg" alt="Ebo — egsk.raw" loading="lazy" onerror="this.style.display='none'">
+        <div class="story-portrait-overlay"></div>
+      </div>
+      <div class="story-portrait-meta reveal d1">
+        <div class="portrait-stat"><span class="portrait-stat-label">Based</span><span class="portrait-stat-val">Doha, Qatar</span></div>
+        <div class="portrait-stat"><span class="portrait-stat-label">Experience</span><span class="portrait-stat-val">5+ years</span></div>
+        <div class="portrait-stat"><span class="portrait-stat-label">Shoots</span><span class="portrait-stat-val">60+ completed</span></div>
+        <div class="portrait-stat"><span class="portrait-stat-label">Recognition</span><span class="portrait-stat-val">IAAP · IPC Founder</span></div>
+        <div class="portrait-stat"><span class="portrait-stat-label">Turnaround</span><span class="portrait-stat-val">1–2 business weeks</span></div>
+        <div class="portrait-stat"><span class="portrait-stat-label">Coverage</span><span class="portrait-stat-val">Doha + surrounding areas</span></div>
+      </div>
+    </div>
+    <div class="story-text">
+      <div class="story-chapter reveal">
+        <div class="story-chapter-label">The beginning</div>
+        <h2>Five years ago, I started shooting cars because nothing else gave me the same problem to solve.</h2>
+        <p>Automotive photography sits at the intersection of two hard disciplines: technical photography and design-led composition. You're working with subjects that have been engineered to look a specific way — and your job is to reveal that intent in a two-dimensional frame.</p>
+        <p>I started in Qatar, shooting whatever I could access. Friends' cars, local meets, anything. The early work wasn't great. But the repetition was invaluable — learning how light wraps around body panels, how different surfaces behave at golden hour versus midday versus artificial light.</p>
+      </div>
+      <div class="story-chapter reveal d1">
+        <div class="story-chapter-label">The approach</div>
+        <h2>I don't do generic car park sessions.</h2>
+        <p>Every shoot starts with a conversation about the car's character. A JDM build and a European GT have completely different personalities — and the location, time of day, and angle selection should reflect that. I build a shot list before I pick up the camera.</p>
+        <p>My edit style is cinematic and restrained. I'm not chasing trends. I'm chasing the feeling the car produces when you're standing next to it — and trying to translate that into something that holds up on a screen and in print.</p>
+        <p>The work that comes out of a session with me should feel like a feature spread, not a social media post. That's the standard I hold every shoot to.</p>
+      </div>
+      <div class="story-chapter reveal d2">
+        <div class="story-chapter-label">Recognition & community</div>
+        <h2>The IPC started as a problem I wanted to solve.</h2>
+        <p>Photography in Qatar — and the wider region — didn't have a structured body that took the craft seriously. No recognition programme. No peer network. No institutional weight behind a photographer's credentials.</p>
+        <p>The International Photographers Council was founded to fix that. As a Full Member and part of the founding group, I wanted to create something that gave photographers at every level a reason to push their standards higher — and recognition when they did.</p>
+        <p>The IAAP recognition came through sustained work in the automotive segment specifically — recognition from peers who understand what technically and aesthetically excellent automotive photography actually requires.</p>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- CREDENTIALS -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Credentials</span></div>
+    <h2 class="h2">Recognition &amp; <span class="em">affiliations.</span></h2>
+  </div>
+  <div class="creds-grid">
+    <div class="cred-card reveal d1">
+      <div class="cred-icon">🏆</div>
+      <h3>IAAP Recognised</h3>
+      <p>Recognised by the International Automotive & Advertising Photographers for sustained excellence in automotive photography — the only international body focused specifically on automotive and commercial vehicle work.</p>
+      <span class="cred-tag">Automotive · Commercial</span>
+    </div>
+    <div class="cred-card reveal d2">
+      <div class="cred-icon">🏛</div>
+      <h3>IPC — Full Member & Founder</h3>
+      <p>Founding contributor to the International Photographers Council, established in Qatar. Full Member status, awards jury eligibility, and active in shaping the annual awards programme.</p>
+      <span class="cred-tag">Qatar · International</span>
+    </div>
+    <div class="cred-card reveal d3">
+      <div class="cred-icon">📍</div>
+      <h3>5+ Years · Doha-Based</h3>
+      <p>Over 60 shoots completed across Doha and surrounding areas. Deep familiarity with Qatar's locations, light conditions, and the logistics of shooting here — especially at night and during golden hour.</p>
+      <span class="cred-tag">60+ Shoots · 30+ Clients</span>
+    </div>
+  </div>
+</div></div>
+
+<!-- GEAR / TOOLS -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">The Setup</span></div>
+    <h2 class="h2">Gear &amp; <span class="em">workflow.</span></h2>
+    <p class="body-sm" style="margin-top:12px;max-width:500px">Equipment matters less than vision — but knowing what your tools do allows you to execute that vision without compromise.</p>
+  </div>
+  <div class="gear-grid">
+    <div class="gear-col reveal d1">
+      <div class="gear-category">Camera &amp; Lenses</div>
+      <div class="gear-list">
+        <div class="gear-item"><span class="gear-name">Sony Alpha System</span><span class="gear-role">Primary body</span></div>
+        <div class="gear-item"><span class="gear-name">24–70mm f/2.8 GM</span><span class="gear-role">Environmental / street</span></div>
+        <div class="gear-item"><span class="gear-name">70–200mm f/2.8 GM</span><span class="gear-role">Rollers / compression</span></div>
+        <div class="gear-item"><span class="gear-name">85mm f/1.4 GM</span><span class="gear-role">Details / portraits</span></div>
+        <div class="gear-item"><span class="gear-name">16–35mm f/2.8 GM</span><span class="gear-role">Wide / environmental</span></div>
+      </div>
+    </div>
+    <div class="gear-col reveal d2">
+      <div class="gear-category">Post-Production</div>
+      <div class="gear-list">
+        <div class="gear-item"><span class="gear-name">Adobe Lightroom Classic</span><span class="gear-role">Primary grading</span></div>
+        <div class="gear-item"><span class="gear-name">Adobe Photoshop</span><span class="gear-role">Compositing / retouching</span></div>
+        <div class="gear-item"><span class="gear-name">Capture One</span><span class="gear-role">Tethered / colour work</span></div>
+        <div class="gear-item"><span class="gear-name">DJI Mavic</span><span class="gear-role">Aerial (select shoots)</span></div>
+        <div class="gear-item"><span class="gear-name">Custom LUT pack</span><span class="gear-role">egsk.raw signature grade</span></div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- CASE STUDIES -->
+<div class="section" style="padding-top:0"><div class="section-inner">
+  <div class="reveal">
+    <div class="eyebrow"><div class="eyebrow-rule"></div><span class="eyebrow-text">Case Studies</span></div>
+    <h2 class="h2">Shoots in <span class="em">depth.</span></h2>
+    <p class="body-sm" style="margin-top:12px;max-width:500px">Two sessions broken down from brief to final delivery — showing the decisions that shape the outcome.</p>
+  </div>
+  <div class="case-grid">
+    <div class="case-card reveal d1">
+      <div class="case-img">
+        <img src="images/a1.jpg" alt="Hawkeye Impreza shoot" loading="lazy" onerror="this.style.display='none'">
+        <div class="case-img-placeholder"><span>GC8</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">Case Study 01 · Night Shoot</div>
+        <div class="case-title">2007 Hawkeye Impreza — Industrial District</div>
+        <p class="case-summary">The brief was open: "surprise me." The car — a JDM-spec Hawkeye with a modified engine bay and aggressive stance — needed a location with industrial character. We shot near the port at 10pm, using ambient sodium lighting and a single off-camera strobe for fill. The result: 32 images across three setups in two hours.</p>
+        <div class="case-stats">
+          <div class="case-stat"><div class="case-stat-n">2</div><div class="case-stat-l">Hours</div></div>
+          <div class="case-stat"><div class="case-stat-n">32</div><div class="case-stat-l">Images</div></div>
+          <div class="case-stat"><div class="case-stat-n">3</div><div class="case-stat-l">Setups</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="case-card reveal d2">
+      <div class="case-img">
+        <img src="images/a2.jpg" alt="Mini Cooper SE shoot" loading="lazy" onerror="this.style.display='none'">
+        <div class="case-img-placeholder"><span>SE</span></div>
+      </div>
+      <div class="case-body">
+        <div class="case-tag">Case Study 02 · Feature Set</div>
+        <div class="case-title">Mini Cooper SE — Street &amp; Detail</div>
+        <p class="case-summary">A full editorial set for a client who wanted images for both Instagram and a feature magazine submission. Three locations across Doha — a clean brutalist wall, the corniche, and an industrial estate for variety. Wide-to-detail coverage across 3.5 hours. Delivered 42 edited images in 10 days.</p>
+        <div class="case-stats">
+          <div class="case-stat"><div class="case-stat-n">3.5</div><div class="case-stat-l">Hours</div></div>
+          <div class="case-stat"><div class="case-stat-n">42</div><div class="case-stat-l">Images</div></div>
+          <div class="case-stat"><div class="case-stat-n">3</div><div class="case-stat-l">Locations</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<!-- CTA -->
+<div class="about-cta"><div class="about-cta-inner reveal">
+  <div>
+    <h2 class="about-cta-h">Let's make<br>something <em>worth<br>looking at.</em></h2>
+    <p style="font-size:13px;color:var(--text-3);line-height:1.85;margin-top:16px;max-width:380px">Tell me your car, your vibe, and what you need. I'll come back with a plan.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;">
+    <a class="btn btn-solid" href="contact.html">Book a Shoot</a>
+    <a class="btn btn-ghost" href="https://instagram.com/egsk.raw" target="_blank" rel="noopener">Follow @egsk.raw</a>
+    <a class="btn" href="ipc.html">IPC Council →</a>
+  </div>
+</div></div>
+
+<footer class="site-footer"><div class="site-footer-inner">
+  <div class="footer-brand">egsk.raw</div>
+  <div class="footer-links"><a href="portfolio.html">Portfolio</a><a href="ipc.html">IPC</a><a href="ipc-awards.html">Awards</a><a href="contact.html">Contact</a></div>
+  <div class="footer-copy">© 2026 · All rights reserved · Qatar</div>
+</div></footer>
+
+<script>
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),2000));
+window.addEventListener('scroll',()=>{const d=document.documentElement,p=(d.scrollTop/(d.scrollHeight-d.clientHeight))*100;document.getElementById('progress').style.width=p+'%';},{passive:true});
+document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')}),{threshold:.08}).observe(el));
+</script>
+</body>
+</html>
